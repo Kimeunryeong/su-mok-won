@@ -6,11 +6,11 @@ section#myPage {
 article #myPW {
   font-size: 24px;
   font-weight: 500;
-  margin: 40px 0 20px 10px;
+  margin: 40px 0 25px 10px;
 }
 
 article#myAccount {
-  padding: 40px 20px;
+  padding: 40px 20px 60px;
 }
 
 article#myAccount h2 {
@@ -27,11 +27,11 @@ article#myAccount #accountInfo {
 }
 
 article#myAccount #accountInfo input {
-  height: 50px;
-  width: 250px;
+  max-width: 235px;
   border: none;
   outline: none;
   border-bottom: 1px solid lightgray;
+  padding: 5px 8px;
 }
 article#myAccount #accountInfo input:focus {
   border: none;
@@ -51,21 +51,21 @@ article#myAccount ~ #logout {
   color: gray;
 }
 
-.settingBtn:first-of-type {
-  margin-bottom: 20px;
+.settingBtn:last-of-type {
+  margin-bottom: 0;
 }
 .settingBtn {
-  margin: 0 15px;
+  margin: 0 15px 20px;
   padding: 25px;
   display: flex;
   border: 1px solid lightgrey;
   border-radius: 20px;
-  min-height: 160px;
+  min-height: 150px;
   justify-content: space-between;
 }
 
 .settingBtn .btnTxt {
-  max-width: 210px;
+  max-width: 230px;
 }
 .settingBtn .btnTxt p:first-child {
   font-size: 24px;

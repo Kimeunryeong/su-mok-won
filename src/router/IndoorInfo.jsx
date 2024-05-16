@@ -4,7 +4,6 @@ import "../style/indoorinfo.css";
 import Title from "../components/Title";
 import Hours from "../components/Hours";
 import GreenDot from "../components/GreenDot";
-import { Link } from "react-router-dom";
 
 export default function IndoorInfo() {
   return (

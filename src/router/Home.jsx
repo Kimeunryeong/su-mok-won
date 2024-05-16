@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
-import Textbox from "../components/Textbox";
 import { Link } from "react-router-dom";
 import { useTheme } from "../context/themeProvider.js";
 import infoMark from "../assets/qr-scan.png";
@@ -29,19 +28,22 @@ function GuideEle({ zIndex, txt, bg, close }) {
 }
 
 export default function Home() {
-  const [ThemeMode, toggleTheme] = useTheme();
+  const [ThemeMode] = useTheme();
   let [showGuide, setShowGuide] = useState(false);
   let [guideNum, setGuideNum] = useState(1);
   const [guide, setGuide] = useState(<div></div>);
+  const [guideZin, setGuideZin] = useState("z-10");
 
   const nextGuide = () => {
     if (guideNum === 1) {
       setGuide(<GuideEle zIndex="z-30" txt="QR 코드는 대구 수목원 곳곳에 있습니다. 카메라 렌즈를 QR코드에 가까이 대주세요." bg="bg-[url('./assets/guide2.svg')]" />);
+      setGuideZin("z-30");
     } else if (guideNum === 2) {
       setGuide(<GuideEle zIndex="z-30" txt="qr 코드의 스캔이 완료되면 스탬프가 찍힙니다. 찍힌 스탬프는 스탬프 메뉴에서 확인할 수 있습니다." bg="bg-[url('./assets/guide3.svg')]" />);
     } else if (guideNum === 3) {
       setGuide(<GuideEle zIndex="z-30" txt="찍힌 스탬프의 갯수에 따라 다양한 경품을 받을 수 있습니다." bg="bg-[url('./assets/guide4.svg')]" close={true} />);
     } else if (guideNum === 4) {
+      setGuideZin("z-10");
       setShowGuide(false);
       return;
     }
@@ -50,7 +52,7 @@ export default function Home() {
   return (
     <Layout>
       {showGuide && (
-        <div onClick={nextGuide} className={`absolute h-[108vh] -top-[60px] w-screen z-10`}>
+        <div onClick={nextGuide} className={`absolute h-[108vh] -top-[60px] w-screen ${guideZin}`}>
           {guide}
         </div>
       )}
@@ -75,17 +77,6 @@ export default function Home() {
           </div>
           <img className="absolute right-0 top-[22px] w-[30%] -z-10" src={infoMark} alt="안내 이미지" />
         </div>
-        {/* <div className={`w-[300px] h-[390px] ${ThemeMode === "dark" ? "bg-[#292929]" : "bg-[#ECECEC]"}  rounded-lg flex flex-col`}>
-          <Link to="/introsumok" className="w-full h-1/3">
-            <Textbox title="수목원소개" text="이용시간, 주의사항 등" />
-          </Link>
-          <Link to="/indoorinfo" className="w-full h-1/3">
-            <Textbox title="산림문화 전시관 안내" text="대구 시민들의 자연학습 체험장" />
-          </Link>
-          <Link to="/indoorinfo2" className="w-full h-1/3">
-            <Textbox title="목재문화 체험장 안내" text="누구나 시작할 수 있는 목공예" border="border-none" />
-          </Link>
-        </div> */}
         <div className="w-[90%] max-w-[370px] flex flex-wrap items-center gap-y-3 mx-auto">
           <Link to="/introsumok" className="w-full h-[150px]">
             <div className="w-full h-full rounded-lg bg-[#119724] text-white flex justify-center items-center">

@@ -59,7 +59,7 @@ export default function Weather() {
       {weatherData ? (
         <div className="flex items-center justify-center gap-x-2 text-center text-lg">
           <p>지금 수목원은</p>
-          <img className="weatherIconImg w-7" src={weatherIcon} />
+          <img className="weatherIconImg w-7" src={weatherIcon} alt="날씨" />
           <p>{weatherData.temp}℃</p>
         </div>
       ) : (

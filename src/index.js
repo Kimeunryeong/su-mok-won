@@ -10,7 +10,6 @@ import IntroSumok from "./router/IntroSumok";
 import StampPage from "./router/StampPage";
 import MyPage from "./router/MyPage";
 import IndoorInfo from "./router/IndoorInfo";
-import Shelter from "./router/Shelter";
 import { ThemeProvider } from "./context/themeProvider";
 import { GlobalStyle } from "./theme/GlobalStyle.js";
 import MapPage from "./router/MapPage.jsx";

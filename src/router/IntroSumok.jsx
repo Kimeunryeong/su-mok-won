@@ -7,7 +7,7 @@ import { PiTentLight, PiKnifeLight, PiMegaphoneLight, PiBicycleLight, PiDogLight
 import { useTheme } from "../context/themeProvider.js";
 
 export default function IntroSumok() {
-  const [ThemeMode, toggleTheme] = useTheme();
+  const [ThemeMode] = useTheme();
   return (
     <Layout>
       <div className="intro-section">
