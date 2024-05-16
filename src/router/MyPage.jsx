@@ -5,18 +5,14 @@ import "../style/mypage.css";
 import IsLogin from "../components/IsLogin.js";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { PiEyeLight, PiEyeSlashLight } from "react-icons/pi";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { apiPasswordEdit } from "../api.js";
 
 export default function MyPage() {
-  const token = JSON.parse(sessionStorage.getItem("userData"))
-  
-  
-  
+  const token = JSON.parse(sessionStorage.getItem("userData"));
+
   const navigate = useNavigate();
-  const [type, setType] = useState(true);
   const [btn2, setBtn2] = useState(false);
   const [ThemeMode, toggleTheme] = useTheme();
   function darkMode() {
@@ -40,8 +36,8 @@ export default function MyPage() {
     setUser(userData);
   };
   const { mutate } = useMutation(apiPasswordEdit, {
-    onSuccess : (data) => {
-      if(data.result===true) {
+    onSuccess: (data) => {
+      if (data.result === true) {
         Swal.fire({
           text: data.message,
           padding: "20px 0",
@@ -51,8 +47,8 @@ export default function MyPage() {
         });
       }
     },
-    onSettled : (data) => {
-      if(data.result===false) {
+    onSettled: (data) => {
+      if (data.result === false) {
         Swal.fire({
           text: data.message,
           padding: "20px 0",
@@ -61,22 +57,22 @@ export default function MyPage() {
           buttonsStyling: false,
         });
       }
-    }
-  })
+    },
+  });
   const {
     register,
     handleSubmit,
     setError,
     formState: { errors },
   } = useForm();
-    const onValid = (data) =>{ 
-      const postUserID = token.user_id
-      const modifiedData = {
-        ...data,
-        user_id: postUserID
+  const onValid = (data) => {
+    const postUserID = token.user_id;
+    const modifiedData = {
+      ...data,
+      user_id: postUserID,
     };
-      mutate(modifiedData);
-    }
+    mutate(modifiedData);
+  };
   return (
     <Layout>
       <section id="myPage">
@@ -87,16 +83,9 @@ export default function MyPage() {
           {user && (
             <>
               <h2>{user?.user_id}님의 마이페이지</h2>
-              <form id="accountInfo" onSubmit={handleSubmit(onValid)}>
-                <div>
-                  <p>비밀번호</p>
-                  <div className="relative">
-                    <input {...register("passwordEdit")} type={type ? "password" : "text"} placeholder="******" className="w-[300px] h-[50px] rounded-lg border-none ring-1 ring-gray-300 outline-none focus:ring-2 focus:ring-[#119724]"/>
-                    <div onClick={() => setType(!type)} className="absolute top-[2px] right-[5px] px-3 py-[6px] bg-white">
-                    {type ? <PiEyeSlashLight size="35px" color="#aaa" /> : <PiEyeLight size="35px" color="#aaa" />}
-                    </div>
-                  </div>
-                </div>
+              <div id="myPW">비밀번호</div>
+              <form id="accountInfo" onSubmit={handleSubmit(onValid)} className="flex items-end">
+                <input {...register("passwordEdit")} type="password" placeholder="******" />
                 <button className={`editBtn ${ThemeMode === "dark" ? "darkEditBtn" : ""}`}>수정</button>
               </form>
             </>
