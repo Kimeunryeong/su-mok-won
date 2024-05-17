@@ -7,12 +7,22 @@ import DropDown from "../components/DropDown";
 import { useTheme } from "../context/themeProvider.js";
 import { useState } from "react";
 import IsLogin from "../components/IsLogin.js";
+import { apiStampInfo } from "../api.js";
 
 export default function StampPage() {
+  const stampArray =[]
   const [user, setUser] = useState(null);
   const updateUser = (userData) => {
     setUser(userData);
   };
+  if(user) {
+    const res = apiStampInfo(user.token, user.user_id);
+    res.then(result => {
+      result.data.forEach(obj => {
+        stampArray.push(obj)
+      })
+    });
+  }
   const [ThemeMode] = useTheme();
   return (
     <Layout>
