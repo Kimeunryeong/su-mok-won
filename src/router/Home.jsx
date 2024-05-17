@@ -8,6 +8,9 @@ import stampSmall from "../assets/stampApprove.png";
 import { GrFormNext, GrClose } from "react-icons/gr";
 import { PiPlantLight, PiTreeLight, PiFlowerTulipLight, PiQuestionLight } from "react-icons/pi";
 import { useTranslation } from "react-i18next";
+import i18n from "../context/i18n.js";
+import flagusa from "../assets/flagUSA.png";
+import flagko from "../assets/flagKor.png";
 
 function GuideEle({ zIndex, txt, bg, close }) {
   const { t } = useTranslation();
@@ -64,7 +67,7 @@ export default function Home() {
         </div>
       )}
       <div className="w-full h-full flex flex-col justify-center items-center pt-[76px] pb-10">
-        {userData && (
+        {userData ? (
           <div
             className="absolute top-[65px] right-6 text-4xl"
             onClick={() => {
@@ -74,6 +77,19 @@ export default function Home() {
             }}
           >
             <PiQuestionLight color="#777" />
+          </div>
+        ) : (
+          <div
+            className="absolute top-[70px] right-8 w-8"
+            onClick={() => {
+              if (i18n.language === "en") {
+                i18n.changeLanguage("ko");
+              } else if (i18n.language === "ko") {
+                i18n.changeLanguage("en");
+              }
+            }}
+          >
+            {i18n.language === "en" ? <img src={flagko} alt="언어변경" /> : <img src={flagusa} alt="언어변경" />}
           </div>
         )}
         <div className="w-[300px] h-[100px] relative flex items-center">
