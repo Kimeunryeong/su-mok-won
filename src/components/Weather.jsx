@@ -26,7 +26,7 @@ export default function Weather() {
         });
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [url]);
   let weatherIcon = sun;
   switch (weatherData?.weather) {
     case "few clouds":
@@ -52,6 +52,8 @@ export default function Weather() {
       break;
     case "mist":
       weatherIcon = mist;
+      break;
+    default:
       break;
   }
   return (

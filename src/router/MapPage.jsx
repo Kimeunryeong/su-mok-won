@@ -17,7 +17,7 @@ function MapBtn({ onClick, txt, border, Icon, bg }) {
 }
 
 export default function MapPage() {
-  const [ThemeMode, toggleTheme] = useTheme();
+  const [ThemeMode] = useTheme();
   const [errorMessage, setErrorMessage] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
   const [iwContent, setIwContent] = useState("");
@@ -69,6 +69,8 @@ export default function MapPage() {
       break;
     case "화장실":
       positions = toiletPositions;
+      break;
+    default:
       break;
   }
 

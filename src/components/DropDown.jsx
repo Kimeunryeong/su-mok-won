@@ -18,7 +18,7 @@ function DropdownBtn({ onClick, icon, text1, text2, border }) {
 export default function DropdownMenu() {
   const [selectedMenu, setSelectedMenu] = useState(["스탬프 1개", "생분해 대나무 칫솔", FaTooth]);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [ThemeMode, toggleTheme] = useTheme();
+  const [ThemeMode] = useTheme();
   const menuRef = useRef(null);
   let IconImg = selectedMenu[2];
 
