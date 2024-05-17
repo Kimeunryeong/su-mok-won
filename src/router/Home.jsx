@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "../context/themeProvider.js";
 import Layout from "../components/Layout";
@@ -11,6 +11,8 @@ import { useTranslation } from "react-i18next";
 import i18n from "../context/i18n.js";
 import flagusa from "../assets/flagUSA.png";
 import flagko from "../assets/flagKor.png";
+import { apiStampInfo } from "../api.js";
+
 
 function GuideEle({ zIndex, txt, bg, close }) {
   const { t } = useTranslation();
@@ -41,6 +43,18 @@ export default function Home() {
   const [guideZin, setGuideZin] = useState("z-10");
   const nav = useNavigate();
   const userData = JSON.parse(sessionStorage.getItem("userData"));
+  const [stampArray, setStampArray] = useState([]);
+ 
+  
+  useEffect(() => {
+    if (userData) {
+      const res = apiStampInfo(userData.token, userData.user_id);
+      res.then((result) => {
+        setStampArray(result.data);
+      });
+    }
+  }, []);
+  console.log(stampArray)
   const guideNav = userData ? false : true;
   const { t } = useTranslation();
 
@@ -61,6 +75,7 @@ export default function Home() {
   };
   return (
     <Layout>
+      
       {showGuide && (
         <div onClick={() => nextGuide(guideNav)} className={`absolute h-[108vh] -top-[60px] w-screen ${guideZin}`}>
           {guide}
