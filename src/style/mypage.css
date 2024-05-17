@@ -65,7 +65,7 @@ article#myAccount ~ #logout {
 }
 
 .settingBtn .btnTxt {
-  max-width: 230px;
+  max-width: 220px;
 }
 .settingBtn .btnTxt p:first-child {
   font-size: 24px;
@@ -109,4 +109,9 @@ article#myAccount #accountInfo .darkEditBtn {
 
 .togBtn .darkTogCircle {
   background-color: #121212;
+}
+
+/* 버튼 켜졌을 때 */
+.settingBtn .togBtn.onBtn {
+  background: var(--mainGreen);
 }

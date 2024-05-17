@@ -55,12 +55,7 @@ export default function QrPage({ history }) {
         canvas.height = videoHeight;
         canvasContext.clearRect(0, 0, canvas.width, canvas.height); // 이전 프레임 지우기
         canvasContext.drawImage(video, 0, 0, videoWidth, videoHeight);
-        const imageData = canvasContext.getImageData(
-          0,
-          0,
-          videoWidth,
-          videoHeight
-        );
+        const imageData = canvasContext.getImageData(0, 0, videoWidth, videoHeight);
         const code = jsQR(imageData.data, imageData.width, imageData.height);
         if (code) {
           // QR 코드를 스캔했을 때 처리
@@ -92,21 +87,18 @@ export default function QrPage({ history }) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [permissionGranted]);
-  const [user, setUser] = useState(null);
+  const [, setUser] = useState(null);
   const updateUser = (userData) => {
     setUser(userData);
   };
   return (
-    
     <div className="qrSection">
       <IsLogin updateUser={updateUser} />
       <Link to="/home" className="qrArrow">
         <IoIosArrowBack color="white" />
       </Link>
       <p className="qrText">QR 코드를 촬영해주세요</p>
-      {permissionGranted === false && (
-        <p className="qrText">카메라 액세스 권한이 거부되었습니다.</p>
-      )}
+      {permissionGranted === false && <p className="qrText">카메라 액세스 권한이 거부되었습니다.</p>}
 
       <div
         className="qrZone"

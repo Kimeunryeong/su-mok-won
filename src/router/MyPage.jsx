@@ -11,14 +11,14 @@ import { apiPasswordEdit } from "../api.js";
 import { useTranslation } from "react-i18next";
 import i18n from "../context/i18n.js";
 
-function SettingBtn({ txt1, txt2, onClick, ThemeMode, left, left1 }) {
+function SettingBtn({ txt1, txt2, onClick, ThemeMode, left, onOff }) {
   return (
     <div className={`settingBtn ${ThemeMode === "dark" ? "DarkSettingBtn" : ""}`} onClick={onClick}>
       <div className="btnTxt">
         <p>{txt1}</p>
         <p dangerouslySetInnerHTML={{ __html: txt2 }}></p>
       </div>
-      <div className={`togBtn ${ThemeMode === "dark" ? "darkBtn" : ""}`}>
+      <div className={`togBtn ${ThemeMode === "dark" ? "darkBtn" : ""} ${onOff ? "onBtn" : ""}`}>
         <div className={`togCircle ${ThemeMode === "dark" ? "darkTogCircle" : ""}`} style={{ left: left ? "22px" : "0" }}></div>
       </div>
     </div>
@@ -99,8 +99,8 @@ export default function MyPage() {
             </>
           )}
         </article>
-        <SettingBtn txt1={t(`myPage.mp3`)} txt2={t(`myPage.mp4`)} onClick={() => toggleTheme()} ThemeMode={ThemeMode} left={ThemeMode === "dark"} />
-        <SettingBtn txt1={t(`myPage.mp5`)} txt2={t(`myPage.mp6`)} onClick={() => setIsBlind(!isBlind)} ThemeMode={ThemeMode} left={isBlind} />
+        <SettingBtn txt1={t(`myPage.mp3`)} txt2={t(`myPage.mp4`)} onClick={() => toggleTheme()} ThemeMode={ThemeMode} left={ThemeMode === "dark"} onOff={ThemeMode === "dark"} />
+        <SettingBtn txt1={t(`myPage.mp5`)} txt2={t(`myPage.mp6`)} onClick={() => setIsBlind(!isBlind)} ThemeMode={ThemeMode} left={isBlind} onOff={isBlind} />
         <SettingBtn
           txt1={t(`myPage.mp7`)}
           txt2={t(`myPage.mp8`)}
@@ -113,6 +113,7 @@ export default function MyPage() {
           }}
           ThemeMode={ThemeMode}
           left={i18n.language === "en"}
+          onOff={i18n.language === "en"}
         />
         <p id="logout" onClick={onClick}>
           {t(`myPage.mp9`)}

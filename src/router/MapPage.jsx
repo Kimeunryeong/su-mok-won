@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Layout from "../components/Layout";
 import KakaoMap from "../components/KakaoMap";
 import { stampPositions, toiletPositions, parkPositions, cafePosition } from "../lib/positions.js";
 import { FaRestroom } from "react-icons/fa";
 import { MdForest } from "react-icons/md";
 import { TbLineScan } from "react-icons/tb";
-import { useTheme } from "../context/themeProvider.js";
+import { ColorBlindContext, useTheme } from "../context/themeProvider.js";
 import { useTranslation } from "react-i18next";
 import i18n from "../context/i18n.js";
 import { stampPositionsEng, toiletPositionsEng, parkPositionsEng, cafePositionEng } from "../lib/positionsEng.js";
 
 function MapBtn({ onClick, txt, border, Icon, bg }) {
   return (
-    <button className={`w-[100px] py-5 px-4 border rounded-md flex flex-col items-center justify-around ${border} ${bg}`} onClick={onClick}>
+    <button className={`w-[100px] py-5 border-2 rounded-md flex flex-col items-center justify-around ${border ? `border-[#119724] font-semibold ${bg && "bg-[#464646]"}` : "border-gray-300"} ${bg ? "bg-[#232325]" : "bg-gray-100"}`} onClick={onClick}>
       <Icon className=" text-[50px] text-[#119724] mb-2" />
       <p>{txt}</p>
     </button>
@@ -22,29 +22,30 @@ function MapBtn({ onClick, txt, border, Icon, bg }) {
 export default function MapPage() {
   const { t } = useTranslation();
   const [ThemeMode] = useTheme();
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [userLocation, setUserLocation] = useState(null);
-  const [iwContent, setIwContent] = useState("");
+  const [errorMessage] = useState(null);
+  const [userLocation] = useState(null);
+  const [iwContent] = useState("");
   const [markers, setMarkers] = useState("스탬프");
+  const { isBlind } = useContext(ColorBlindContext);
 
   // 내 위치 가져오기 함수
-  const getCurrentLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setUserLocation({ latitude, longitude });
-        },
-        (error) => {
-          console.error("내 위치 가져오기 실패:", error);
-          setErrorMessage("내 위치를 가져오는 중에 오류가 발생했습니다.");
-        }
-      );
-    } else {
-      console.error("브라우저가 Geolocation API를 지원하지 않습니다.");
-      setErrorMessage("브라우저가 위치 정보를 지원하지 않습니다.");
-    }
-  };
+  // const getCurrentLocation = () => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         const { latitude, longitude } = position.coords;
+  //         setUserLocation({ latitude, longitude });
+  //       },
+  //       (error) => {
+  //         console.error("내 위치 가져오기 실패:", error);
+  //         setErrorMessage("내 위치를 가져오는 중에 오류가 발생했습니다.");
+  //       }
+  //     );
+  //   } else {
+  //     console.error("브라우저가 Geolocation API를 지원하지 않습니다.");
+  //     setErrorMessage("브라우저가 위치 정보를 지원하지 않습니다.");
+  //   }
+  // };
 
   // 사용자의 위치가 변경될 때마다 KakaoMap 컴포넌트를 다시 렌더링
   useEffect(() => {
@@ -54,10 +55,10 @@ export default function MapPage() {
   }, [userLocation, markers]);
 
   // 각 버튼 클릭 이벤트 핸들러
-  const handleButtonClick = (latitude, longitude, locationName) => {
-    setUserLocation({ latitude, longitude });
-    setIwContent(`<div style="padding: 10px;">${locationName}</div>`); // 클릭된 버튼의 위치를 사용자의 위치로 설정
-  };
+  // const handleButtonClick = (latitude, longitude, locationName) => {
+  //   setUserLocation({ latitude, longitude });
+  //   setIwContent(`<div style="padding: 10px;">${locationName}</div>`); // 클릭된 버튼의 위치를 사용자의 위치로 설정
+  // };
 
   // 마커 표시할 장소 목록
   let positions;
@@ -101,9 +102,9 @@ export default function MapPage() {
     <Layout>
       <div className="w-full flex flex-col justify-center items-center pt-8 pb-32 gap-4">
         <div className="flex flex-wrap gap-2 justify-center">
-          <MapBtn txt={t(`mapPage.m0`)} onClick={() => setMarkers("스탬프")} border={markers === "스탬프" ? "border-[#119724] font-semibold" : "border-gray-300"} Icon={TbLineScan} bg={ThemeMode === "dark" ? "bg-[#232325]" : "bg-gray-100 "} />
-          <MapBtn txt={t(`mapPage.m1`)} onClick={() => setMarkers("카페/쉼터")} border={markers === "카페/쉼터" ? "border-[#119724] font-semibold" : "border-gray-300"} Icon={MdForest} bg={ThemeMode === "dark" ? "bg-[#232325]" : "bg-gray-100 "} />
-          <MapBtn txt={t(`mapPage.m2`)} onClick={() => setMarkers("화장실")} border={markers === "화장실" ? "border-[#119724] font-semibold" : "border-gray-300"} Icon={FaRestroom} bg={ThemeMode === "dark" ? "bg-[#232325]" : "bg-gray-100 "} />
+          <MapBtn txt={t(`mapPage.m0`)} onClick={() => setMarkers("스탬프")} border={markers === "스탬프"} Icon={TbLineScan} bg={ThemeMode === "dark"} />
+          <MapBtn txt={t(`mapPage.m1`)} onClick={() => setMarkers("카페/쉼터")} border={markers === "카페/쉼터"} Icon={MdForest} bg={ThemeMode === "dark"} />
+          <MapBtn txt={t(`mapPage.m2`)} onClick={() => setMarkers("화장실")} border={markers === "화장실"} Icon={FaRestroom} bg={ThemeMode === "dark"} />
         </div>
         {/* 카카오지도 */}
         <KakaoMap userLocation={userLocation} iwContent={iwContent} markers={markers} />
