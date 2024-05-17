@@ -8,6 +8,8 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { apiPasswordEdit } from "../api.js";
+import { useTranslation } from "react-i18next";
+import i18n from "../context/i18n.js";
 
 function SettingBtn({ txt1, txt2, onClick, ThemeMode, left, left1 }) {
   return (
@@ -24,14 +26,12 @@ function SettingBtn({ txt1, txt2, onClick, ThemeMode, left, left1 }) {
 }
 
 export default function MyPage() {
+  const { t } = useTranslation();
   const token = JSON.parse(sessionStorage.getItem("userData"));
-
   const navigate = useNavigate();
+  const [ThemeMode, toggleTheme] = useTheme();
   // 색맹모드 구현시 삭제
   const [btn2, setBtn2] = useState(false);
-  // 외국어모드 구현시 삭제
-  const [btn3, setBtn3] = useState(false);
-  const [ThemeMode, toggleTheme] = useTheme();
 
   const [user, setUser] = useState(null); // 사용자 정보를 상태로 관리
   const onClick = () => {
@@ -91,20 +91,33 @@ export default function MyPage() {
           {/* 사용자 정보를 이용하여 마이페이지 렌더링 */}
           {user && (
             <>
-              <h2>{user?.user_id}님의 마이페이지</h2>
-              <div id="myPW">비밀번호</div>
+              <h2>{user?.user_id + t(`myPage.mp0`)}</h2>
+              <div id="myPW">{t(`myPage.mp1`)}</div>
               <form id="accountInfo" onSubmit={handleSubmit(onValid)} className="flex items-end">
                 <input {...register("passwordEdit")} type="password" placeholder="******" className={`${ThemeMode === "dark" ? "bg-[#111]" : "bg-inherit"}`} />
-                <button className={`editBtn ${ThemeMode === "dark" ? "darkEditBtn" : ""}`}>수정</button>
+                <button className={`editBtn ${ThemeMode === "dark" ? "darkEditBtn" : ""}`}>{t(`myPage.mp2`)}</button>
               </form>
             </>
           )}
         </article>
-        <SettingBtn txt1="다크 모드" txt2="앱 화면을 어둡게 변경합니다." onClick={() => toggleTheme()} ThemeMode={ThemeMode} left={ThemeMode} left1="dark" />
-        <SettingBtn txt1="색맹 모드" txt2="색깔을 구분하기 힘든 분들을 위해 찍힌 스탬프의 모양을 변경합니다." onClick={() => setBtn2(!btn2)} ThemeMode={ThemeMode} left={btn2} left1={true} />
-        <SettingBtn txt1="Change Language" txt2="언어를 영어로 변경합니다.<br /> App language will change to English." onClick={() => setBtn3(!btn3)} ThemeMode={ThemeMode} left={btn3} left1={true} />
+        <SettingBtn txt1={t(`myPage.mp3`)} txt2={t(`myPage.mp4`)} onClick={() => toggleTheme()} ThemeMode={ThemeMode} left={ThemeMode} left1="dark" />
+        <SettingBtn txt1={t(`myPage.mp5`)} txt2={t(`myPage.mp6`)} onClick={() => setBtn2(!btn2)} ThemeMode={ThemeMode} left={btn2} left1={true} />
+        <SettingBtn
+          txt1={t(`myPage.mp7`)}
+          txt2={t(`myPage.mp8`)}
+          onClick={() => {
+            if (i18n.language === "en") {
+              i18n.changeLanguage("ko");
+            } else if (i18n.language === "ko") {
+              i18n.changeLanguage("en");
+            }
+          }}
+          ThemeMode={ThemeMode}
+          left={i18n.language}
+          left1={"en"}
+        />
         <p id="logout" onClick={onClick}>
-          로그아웃
+          {t(`myPage.mp9`)}
         </p>
       </section>
     </Layout>

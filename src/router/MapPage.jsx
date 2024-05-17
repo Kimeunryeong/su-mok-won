@@ -6,6 +6,9 @@ import { FaRestroom } from "react-icons/fa";
 import { MdForest } from "react-icons/md";
 import { TbLineScan } from "react-icons/tb";
 import { useTheme } from "../context/themeProvider.js";
+import { useTranslation } from "react-i18next";
+import i18n from "../context/i18n.js";
+import { stampPositionsEng, toiletPositionsEng, parkPositionsEng, cafePositionEng } from "../lib/positionsEng.js";
 
 function MapBtn({ onClick, txt, border, Icon, bg }) {
   return (
@@ -17,6 +20,7 @@ function MapBtn({ onClick, txt, border, Icon, bg }) {
 }
 
 export default function MapPage() {
+  const { t } = useTranslation();
   const [ThemeMode] = useTheme();
   const [errorMessage, setErrorMessage] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
@@ -57,30 +61,49 @@ export default function MapPage() {
 
   // 마커 표시할 장소 목록
   let positions;
-  switch (markers) {
-    case "스탬프":
-      positions = stampPositions;
-      break;
-    case "주차장":
-      positions = parkPositions;
-      break;
-    case "카페/쉼터":
-      positions = cafePosition;
-      break;
-    case "화장실":
-      positions = toiletPositions;
-      break;
-    default:
-      break;
+  if (i18n.language === "ko") {
+    switch (markers) {
+      case "스탬프":
+        positions = stampPositions;
+        break;
+      case "주차장":
+        positions = parkPositions;
+        break;
+      case "카페/쉼터":
+        positions = cafePosition;
+        break;
+      case "화장실":
+        positions = toiletPositions;
+        break;
+      default:
+        break;
+    }
+  } else if (i18n.language === "en") {
+    switch (markers) {
+      case "스탬프":
+        positions = stampPositionsEng;
+        break;
+      case "주차장":
+        positions = parkPositionsEng;
+        break;
+      case "카페/쉼터":
+        positions = cafePositionEng;
+        break;
+      case "화장실":
+        positions = toiletPositionsEng;
+        break;
+      default:
+        break;
+    }
   }
 
   return (
     <Layout>
       <div className="w-full flex flex-col justify-center items-center pt-8 pb-32 gap-4">
         <div className="flex flex-wrap gap-2 justify-center">
-          <MapBtn txt="QR 코드" onClick={() => setMarkers("스탬프")} border={markers === "스탬프" ? "border-[#119724] font-semibold" : "border-gray-300"} Icon={TbLineScan} bg={ThemeMode === "dark" ? "bg-[#232325]" : "bg-gray-100 "} />
-          <MapBtn txt="카페/쉼터" onClick={() => setMarkers("카페/쉼터")} border={markers === "카페/쉼터" ? "border-[#119724] font-semibold" : "border-gray-300"} Icon={MdForest} bg={ThemeMode === "dark" ? "bg-[#232325]" : "bg-gray-100 "} />
-          <MapBtn txt="화장실" onClick={() => setMarkers("화장실")} border={markers === "화장실" ? "border-[#119724] font-semibold" : "border-gray-300"} Icon={FaRestroom} bg={ThemeMode === "dark" ? "bg-[#232325]" : "bg-gray-100 "} />
+          <MapBtn txt={t(`mapPage.m0`)} onClick={() => setMarkers("스탬프")} border={markers === "스탬프" ? "border-[#119724] font-semibold" : "border-gray-300"} Icon={TbLineScan} bg={ThemeMode === "dark" ? "bg-[#232325]" : "bg-gray-100 "} />
+          <MapBtn txt={t(`mapPage.m1`)} onClick={() => setMarkers("카페/쉼터")} border={markers === "카페/쉼터" ? "border-[#119724] font-semibold" : "border-gray-300"} Icon={MdForest} bg={ThemeMode === "dark" ? "bg-[#232325]" : "bg-gray-100 "} />
+          <MapBtn txt={t(`mapPage.m2`)} onClick={() => setMarkers("화장실")} border={markers === "화장실" ? "border-[#119724] font-semibold" : "border-gray-300"} Icon={FaRestroom} bg={ThemeMode === "dark" ? "bg-[#232325]" : "bg-gray-100 "} />
         </div>
         {/* 카카오지도 */}
         <KakaoMap userLocation={userLocation} iwContent={iwContent} markers={markers} />

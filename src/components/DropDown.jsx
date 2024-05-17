@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useTheme } from "../context/themeProvider";
 import { FaTooth, FaSoap, FaBagShopping } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
 
 function DropdownBtn({ onClick, icon, text1, text2, border }) {
   return (
@@ -16,7 +17,8 @@ function DropdownBtn({ onClick, icon, text1, text2, border }) {
 }
 
 export default function DropdownMenu() {
-  const [selectedMenu, setSelectedMenu] = useState(["스탬프 1개", "생분해 대나무 칫솔", FaTooth]);
+  const { t } = useTranslation();
+  const [selectedMenu, setSelectedMenu] = useState([t(`stampPage.sp0`), t(`stampPage.sp1`), FaTooth]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [ThemeMode] = useTheme();
   const menuRef = useRef(null);
@@ -66,9 +68,9 @@ export default function DropdownMenu() {
       {menuOpen && (
         <div className={`origin-top-right absolute right-0 w-full rounded-md shadow-lg mt-1 ${ThemeMode === "dark" ? "bg-[#2e2e2e] text-white" : "bg-[#E6E6E6] text-inherit"}`}>
           <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-            <DropdownBtn onClick={() => handleMenuClick(["스탬프 1개", "생분해 대나무 칫솔", FaTooth])} text1="스탬프 1개" text2="생분해 대나무 칫솔" border="border-b" icon={<FaTooth size="35px" color="#666" />} />
-            <DropdownBtn onClick={() => handleMenuClick(["스탬프 3개", "친환경 설거지 비누", FaSoap])} text1="스탬프 3개" text2="친환경 설거지 비누" border="border-b" icon={<FaSoap size="35px" color="#666" />} />
-            <DropdownBtn onClick={() => handleMenuClick(["스탬프 6개", "업사이클링 에코백", FaBagShopping])} text1="스탬프 6개" text2="업사이클링 에코백" icon={<FaBagShopping size="35px" color="#666" />} />
+            <DropdownBtn onClick={() => handleMenuClick([t(`stampPage.sp0`), t(`stampPage.sp1`), FaTooth])} text1={t(`stampPage.sp0`)} text2={t(`stampPage.sp1`)} border="border-b" icon={<FaTooth size="35px" color="#666" />} />
+            <DropdownBtn onClick={() => handleMenuClick([t(`stampPage.sp2`), t(`stampPage.sp3`), FaSoap])} text1={t(`stampPage.sp2`)} text2={t(`stampPage.sp3`)} border="border-b" icon={<FaSoap size="35px" color="#666" />} />
+            <DropdownBtn onClick={() => handleMenuClick([t(`stampPage.sp4`), t(`stampPage.sp5`), FaBagShopping])} text1={t(`stampPage.sp4`)} text2={t(`stampPage.sp5`)} icon={<FaBagShopping size="35px" color="#666" />} />
           </div>
         </div>
       )}

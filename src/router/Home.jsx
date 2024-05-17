@@ -7,20 +7,22 @@ import infoMark from "../assets/qr-scan.png";
 import stampSmall from "../assets/stampApprove.png";
 import { GrFormNext, GrClose } from "react-icons/gr";
 import { PiPlantLight, PiTreeLight, PiFlowerTulipLight, PiQuestionLight } from "react-icons/pi";
+import { useTranslation } from "react-i18next";
 
 function GuideEle({ zIndex, txt, bg, close }) {
+  const { t } = useTranslation();
   return (
     <div className={`absolute grid font-semibold text-center w-full h-full text-white text-2xl leading-[36px] ${zIndex} ${bg} bg-cover bg-center bg-no-repeat`}>
       <div className="self-center justify-self-center">
         <p dangerouslySetInnerHTML={{ __html: txt }} />
         {close ? (
           <p className="flex items-center justify-end pt-5 px-2 font-normal text-[20px]">
-            닫기&nbsp;
+            {t(`main.guide4`)}&nbsp;
             <GrClose size="16px" />
           </p>
         ) : (
           <p className="flex items-center justify-end pt-5 px-6 font-normal text-[20px]">
-            다음 <GrFormNext />
+            {t(`main.guide3`)} <GrFormNext />
           </p>
         )}
       </div>
@@ -37,13 +39,14 @@ export default function Home() {
   const nav = useNavigate();
   const userData = JSON.parse(sessionStorage.getItem("userData"));
   const guideNav = userData ? false : true;
+  const { t } = useTranslation();
 
   const nextGuide = (guideNav) => {
     if (guideNum === 1) {
-      setGuide(<GuideEle zIndex="z-30" txt="QR 코드는 대구 수목원 곳곳에 있습니다. 카메라 렌즈를 QR코드에 가까이 대주세요." bg="bg-[url('./assets/guide2.svg')]" />);
+      setGuide(<GuideEle zIndex="z-30" txt={t(`main.guide1`)} bg="bg-[url('./assets/guide2.svg')]" />);
       setGuideZin("z-30");
     } else if (guideNum === 2) {
-      setGuide(<GuideEle zIndex="z-30" txt="QR 코드를 스캔하면 스탬프가 찍힙니다. 스탬프를 모으고 다양한 경품을 받아가세요!" bg="bg-[url('./assets/guide3.svg')]" />);
+      setGuide(<GuideEle zIndex="z-30" txt={t(`main.guide2`)} bg="bg-[url('./assets/guide3.svg')]" close={true} />);
     } else if (guideNum === 3) {
       // setGuide(<GuideEle zIndex="z-30" txt="찍힌 스탬프의 갯수에 따라 다양한 경품을 받을 수 있습니다." bg="bg-[url('./assets/guide4.svg')]" close={true} />);
       if (guideNav) nav("/login");
@@ -65,7 +68,7 @@ export default function Home() {
           <div
             className="absolute top-[65px] right-6 text-4xl"
             onClick={() => {
-              setGuide(<GuideEle txt="회원 가입 후, 아래쪽의 QR 촬영 버튼을 누르면 카메라가 켜집니다." bg="bg-black/70" />);
+              setGuide(<GuideEle txt={t(`main.guide0`)} bg="bg-black/70" />);
               setGuideNum(1);
               setShowGuide(true);
             }}
@@ -78,22 +81,24 @@ export default function Home() {
             <>
               <div
                 onClick={() => {
-                  setGuide(<GuideEle txt="회원 가입 후, 아래쪽의 QR 촬영 버튼을 누르면 카메라가 켜집니다." bg="bg-black/70" />);
+                  setGuide(<GuideEle txt={t(`main.guide0`)} bg="bg-black/70" />);
                   setGuideNum(1);
                   setShowGuide(true);
                 }}
                 className="w-full h-full flex flex-col ml-4 justify-center"
               >
-                <span className="text-2xl">앱 이용 방법</span>
-                <span>스탬프 찍고 경품 받아가세요!</span>
+                <span className="text-2xl">{t(`main.hello0`)}</span>
+                <span>{t(`main.hello1`)}</span>
               </div>
               <img className="absolute right-0 top-[22px] w-[30%] -z-10" src={infoMark} alt="안내 이미지" />
             </>
           )}
           {userData && (
             <div className="w-full h-full pt-4">
-              <div className="text-2xl mb-[2px]">{userData.user_id} 님 안녕하세요!</div>
-              <span className="text-lg text-[#888]">내가 모은 스탬프: 0개</span>
+              <div className="text-2xl mb-[2px]">
+                {userData.user_id} {t(`main.hello2`)}
+              </div>
+              <span className="text-lg text-[#888]">{t(`main.hello3`)}</span>
               <img className="absolute right-0 top-2 w-[28%] -z-10" src={stampSmall} alt="안내 이미지" />
             </div>
           )}
@@ -103,21 +108,21 @@ export default function Home() {
             <div className="w-full h-full rounded-lg bg-[#119724] text-white flex justify-center items-center">
               <PiTreeLight className="text-8xl" />
               <div className="w-[50%] ml-3">
-                <span className="text-2xl font-semibold">대구수목원 소개</span>
-                <p>이용시간, 주의 사항 등</p>
+                <span className="text-2xl font-semibold">{t(`main.menu0`)}</span>
+                <p>{t(`main.menu1`)}</p>
               </div>
             </div>
           </Link>
           <Link to="/indoorinfo" className="w-[48%] mr-auto h-[150px]">
             <div className={`w-full h-full rounded-lg flex flex-col items-center justify-center ${ThemeMode === "dark" ? "bg-[#343434] text-[#b5b5b5]" : "bg-[#ddd] text-[#555]"}`}>
               <PiFlowerTulipLight className="text-7xl" />
-              <span className="text-xl mt-1 font-semibold">산림문화전시관</span>
+              <span className="text-xl mt-1 font-semibold">{t(`main.menu2`)}</span>
             </div>
           </Link>
           <Link to="/indoorinfo2" className="w-[48%] h-[150px]">
             <div className="w-full h-full rounded-lg bg-[#f1a636] text-white flex flex-col items-center justify-center">
               <PiPlantLight className="text-7xl" />
-              <span className="text-xl mt-1 font-semibold">목재문화체험장</span>
+              <span className="text-xl mt-1 font-semibold">{t(`main.menu3`)}</span>
             </div>
           </Link>
         </div>

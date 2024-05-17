@@ -5,42 +5,45 @@ import Title from "../components/Title";
 import Hours from "../components/Hours";
 import GreenDot from "../components/GreenDot";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function IndoorInfo2() {
+  const { t } = useTranslation();
   return (
     <Layout>
       <div className="indoor-section">
-        <Title title="목재문화체험장" />
+        <Title title={t(`indoor2.iI0`)} />
         <article>
-          <div className="forestcul-text">시민들에게 목공체험을 통한 다양한 목재문화 및 목공예에 관한 정보를 제공하는 공간입니다.</div>
+          <div className="forestcul-text">{t(`indoor2.iI1`)}</div>
           {/* 이용시간 */}
           <div className="intro-time">
-            <GreenDot title="이용 시간" />
-            <Hours date1="3월 1일 ~ 10월 31일" time1="오전 9시 ~ 오후 5시" date2="11월 1일 ~ 2월 28일" time2="오전 9시 ~ 오후 4시" />
-            <div className="timetable-caution">※매주 월요일과 공휴일은 휴관일입니다.</div>
+            <GreenDot title={t(`indoor2.iI2`)} />
+            <Hours date1={t(`indoor2.iI3`)} time1={t(`indoor2.iI4`)} date2={t(`indoor2.iI5`)} time2={t(`indoor2.iI6`)} />
+            <div className="timetable-caution">※ {t(`indoor2.iI7`)}</div>
           </div>
           {/* 이용안내 */}
           <div className="useProgInfo">
-            <GreenDot title="목공 체험 안내" />
+            <GreenDot title={t(`indoor2.iI8`)} />
             <div className="progInnerInfo">
-              <p className="progTit">체험프로그램 참여 방법</p>
+              <p className="progTit">{t(`indoor2.iI9`)}</p>
               <p className="mb-6">
-                - <Link to="https://yeyak.daegu.go.kr/yeyak/experience/experienceListView.do?memId=B0000005">대구광역시 통합예약시스템</Link>에서 3일전까지 예약
+                - <Link to="https://yeyak.daegu.go.kr/yeyak/experience/experienceListView.do?memId=B0000005">{t(`indoor2.iI10`)}</Link>
+                {t(`indoor2.iI11`)}
               </p>
-              <p className="progTit">참여 비용</p>
-              <p>- 성인: 2,000원</p>
-              <p>- 미성년자: 1,000원</p>
-              <p>※현장 카드 결제만 가능하며, 재료비는 별도입니다.</p>
-              <p>※20명 이상 예약시 개인체험료의 20%가 할인됩니다.</p>
+              <p className="progTit">{t(`indoor2.iI12`)}</p>
+              <p>- {t(`indoor2.iI13`)}</p>
+              <p>- {t(`indoor2.iI14`)}</p>
+              <p>※ {t(`indoor2.iI15`)}</p>
+              <p>※ {t(`indoor2.iI16`)}</p>
             </div>
           </div>
           {/* 층별안내 */}
           <div className="floorInfo">
-            <GreenDot title="층별 안내" />
+            <GreenDot title={t(`indoor2.iI17`)} />
             <div>
               <div className="floorInfo-con-box">
                 <div>
-                  1층 <p>유아체험장· 유아놀이방, 초등체험장</p>
+                  {t(`indoor2.iI18`)} <p>{t(`indoor2.iI19`)}</p>
                 </div>
                 <div className="floorImg">
                   <div></div>
@@ -48,7 +51,8 @@ export default function IndoorInfo2() {
               </div>
               <div className="floorInfo-con-box">
                 <div>
-                  2층<p>중등체험장, 성인체험장</p>
+                  {t(`indoor2.iI20`)}
+                  <p>{t(`indoor2.iI21`)}</p>
                 </div>
                 <div className="floorImg">
                   <div></div>

@@ -7,9 +7,11 @@ import snow from "../assets/weatherIcon/snow.svg";
 import sun from "../assets/weatherIcon/sun.svg";
 import thunder from "../assets/weatherIcon/thunder.svg";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 export default function Weather() {
   const [weatherData, setWeatherData] = useState(null);
+  const { t } = useTranslation();
 
   const apiKey = "6a0d33958b14a3c26fa985a6fecc4763"; // API 키를 직접 지정
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=35.799208845005865&lon=128.52369024972057&appid=${apiKey}`;
@@ -60,12 +62,12 @@ export default function Weather() {
     <>
       {weatherData ? (
         <div className="flex items-center justify-center gap-x-2 text-center text-lg">
-          <p>지금 수목원은</p>
+          <p>{t(`main.weather0`)}</p>
           <img className="weatherIconImg w-7" src={weatherIcon} alt="날씨" />
           <p>{weatherData.temp}℃</p>
         </div>
       ) : (
-        <p className="text-lg text-center">날씨 정보를 불러오는 중</p>
+        <p className="text-lg text-center">{t(`main.weather1`)}</p>
       )}
     </>
   );
