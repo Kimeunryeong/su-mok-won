@@ -13,7 +13,6 @@ export default function StampPage() {
   const [stampArray, setStampArray] = useState([]);
   const [user, setUser] = useState(null);
   const { isBlind } = useContext(ColorBlindContext);
-  console.log(isBlind);
   const updateUser = (userData) => {
     setUser(userData);
   };
@@ -39,8 +38,16 @@ export default function StampPage() {
         <div className="stamp-box">
           {stampArray.map((stamp) => (
             <p key={stamp.stamp_id}>
-              <img src={stamp.is_collected === 1 ? GreenStamp : GrayStamp} alt={stamp.is_collected === 1 ? "완성 스탬프" : "미완성 스탬프"} />
-              <BlackStamp fillColor={ThemeMode === "dark" ? "#fff" : "#000"} />
+              {/* <img src={stamp.is_collected === 1 ? GreenStamp : GrayStamp} alt={stamp.is_collected === 1 ? "완성 스탬프" : "미완성 스탬프"} />
+              <BlackStamp fillColor={ThemeMode === "dark" ? "#fff" : "#000"} /> */}
+              {stamp.is_collected !== 1 ? (
+                <img src={GrayStamp} alt="미완성 스탬프" />
+              ) : (
+                <>
+                  {isBlind === false && <img src={GreenStamp} alt="완성 스탬프" />}
+                  {isBlind === true && ThemeMode === "dark" ? <BlackStamp fillColor="#fff" /> : <BlackStamp fillColor="#000" />}
+                </>
+              )}
             </p>
           ))}
         </div>
