@@ -1,87 +1,87 @@
 const { kakao } = window;
 
-export const stampPositionsEng = [
+export const cafePositionEng = [
   {
-    title: "침엽수원eng",
-    latlng: new kakao.maps.LatLng(35.8013, 128.52097),
-    desc: "잎이 바늘같이 뾰족한 침엽수들이 자라는 곳입니다.",
+    title: "Cafe",
+    latlng: new kakao.maps.LatLng(35.80051980506114, 128.52245503345708),
+    desc: "This is a great place to enjoy a cup of tea while gazing at the forest. Various snacks tailored to the tastes of diverse visitors are also available for sale.",
   },
   {
-    title: "습지원eng",
-    latlng: new kakao.maps.LatLng(35.80052370351272, 128.5201012191372),
-    desc: "물가에서 잘 자라거나 습기를 좋아하는 식물을 모아 전시한 곳입니다.",
-  },
-  {
-    title: "무궁화원eng",
-    latlng: new kakao.maps.LatLng(35.799712542069514, 128.52292532334738),
-    desc: "단군시대로부터 내려오는 우리나라의 꽃, 무궁화가 있는 곳입니다.",
-  },
-  {
-    title: "염료 식물원eng",
-    latlng: new kakao.maps.LatLng(35.797142822107794, 128.5259099978123),
-    desc: "천연염료로 사용 가능한 식물을 모아 놓은 곳입니다.",
-  },
-  {
-    title: "양치 식물원eng",
-    latlng: new kakao.maps.LatLng(35.795706624856, 128.52537693278592),
-    desc: "꽃을 피우지 않고 포자로 번식하는 양치식물을 전시한 곳입니다.",
-  },
-  {
-    title: "전통정원eng",
-    latlng: new kakao.maps.LatLng(35.79479437605564, 128.52571073583277),
-    desc: "우리나라 전통정원을 재현한 곳으로 방지원도, 정자, 담장, 화계 등으로 구성되어 있습니다.",
-  },
-];
-
-export const toiletPositionsEng = [
-  {
-    title: "주차장 화장실eng",
-    latlng: new kakao.maps.LatLng(35.8016, 128.52015),
-    desc: "",
-  },
-  {
-    title: "산책로 화장실 1eng",
-    latlng: new kakao.maps.LatLng(35.7995, 128.5207),
-    desc: "",
-  },
-  {
-    title: "산책로 화장실 2eng",
-    latlng: new kakao.maps.LatLng(35.7987, 128.5247),
-    desc: "",
-  },
-  {
-    title: "산책로 화장실 3eng",
-    latlng: new kakao.maps.LatLng(35.7951, 128.5256),
+    title: "Rest Area",
+    latlng: new kakao.maps.LatLng(35.7999830984602, 128.52304809244063),
     desc: "",
   },
 ];
 
 export const parkPositionsEng = [
   {
-    title: "제1 주차장eng",
+    title: "Parking Lot 1",
     latlng: new kakao.maps.LatLng(35.80176475470669, 128.5201687276982),
   },
   {
-    title: "제2 주차장eng",
+    title: "Parking Lot 2",
     latlng: new kakao.maps.LatLng(35.802384098351425, 128.52011591230576),
-    desc: "전기차 충전소 있음",
+    desc: "Electric Vehicle Charging Station Available",
   },
   {
-    title: "제3 주차장eng",
+    title: "Parking Lot 3",
     latlng: new kakao.maps.LatLng(35.803452716053286, 128.5190209285164),
-    desc: "전기차 충전소 있음",
+    desc: "Electric Vehicle Charging Station Available",
   },
 ];
 
-export const cafePositionEng = [
+export const stampPositionsEng = [
   {
-    title: "수목원 커피eng",
-    latlng: new kakao.maps.LatLng(35.80051980506114, 128.52245503345708),
-    desc: "숲을 바라보며 차 한잔을 즐기기 좋은 곳입니다. 다양한 방문객의 취향에 맞춘 간식거리가 함께 판매되고 있습니다.",
+    title: "Coniferous garden",
+    latlng: new kakao.maps.LatLng(35.8013, 128.52097),
+    desc: "This is where needle-point conifers grow.",
   },
   {
-    title: "쉼터eng",
-    latlng: new kakao.maps.LatLng(35.7999830984602, 128.52304809244063),
-    desc: "휴식을 취하면서 음료나 간식을 즐길 수 있습니다. 산책로와 조망대 등을 통해 대구 수목원의 아름다운 풍경을 감상할 수 있으며, 쉼터에서는 이러한 풍경을 더욱 편안하게 즐길 수 있습니다.",
+    title: "Wetland garden",
+    latlng: new kakao.maps.LatLng(35.80052370351272, 128.5201012191372),
+    desc: "This is where plants that grow like moisture are displayed.",
+  },
+  {
+    title: "Rose of Sharon garden",
+    latlng: new kakao.maps.LatLng(35.799712542069514, 128.52292532334738),
+    desc: "This is where Mugunghwa(Rose of Sharon) come down from a long time ago.",
+  },
+  {
+    title: "Dye-producing plants garden",
+    latlng: new kakao.maps.LatLng(35.797142822107794, 128.5259099978123),
+    desc: "This is where plants that can be used as natural dyes are collected.",
+  },
+  {
+    title: "Ferns garden",
+    latlng: new kakao.maps.LatLng(35.795706624856, 128.52537693278592),
+    desc: "This is where ferns that do not bloom and reproduce into spores are displayed.",
+  },
+  {
+    title: "Traditional garden",
+    latlng: new kakao.maps.LatLng(35.79479437605564, 128.52571073583277),
+    desc: "This is where the traditional garden of Korea is reproduced",
+  },
+];
+
+export const toiletPositionsEng = [
+  {
+    title: "Parking lot toilet",
+    latlng: new kakao.maps.LatLng(35.8016, 128.52015),
+    desc: "",
+  },
+  {
+    title: "Walking path toilet 1",
+    latlng: new kakao.maps.LatLng(35.7995, 128.5207),
+    desc: "",
+  },
+  {
+    title: "Walking path toilet 2",
+    latlng: new kakao.maps.LatLng(35.7987, 128.5247),
+    desc: "",
+  },
+  {
+    title: "Walking path toilet 3",
+    latlng: new kakao.maps.LatLng(35.7951, 128.5256),
+    desc: "",
   },
 ];

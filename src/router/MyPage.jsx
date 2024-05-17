@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Layout from "../components/Layout";
-import { useTheme } from "../context/themeProvider.js";
+import { ColorBlindContext, useTheme } from "../context/themeProvider.js";
 import "../style/mypage.css";
 import IsLogin from "../components/IsLogin.js";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +19,7 @@ function SettingBtn({ txt1, txt2, onClick, ThemeMode, left, left1 }) {
         <p dangerouslySetInnerHTML={{ __html: txt2 }}></p>
       </div>
       <div className={`togBtn ${ThemeMode === "dark" ? "darkBtn" : ""}`}>
-        <div className={`togCircle ${ThemeMode === "dark" ? "darkTogCircle" : ""}`} style={{ left: left === left1 ? "22px" : "0" }}></div>
+        <div className={`togCircle ${ThemeMode === "dark" ? "darkTogCircle" : ""}`} style={{ left: left ? "22px" : "0" }}></div>
       </div>
     </div>
   );
@@ -30,8 +30,7 @@ export default function MyPage() {
   const token = JSON.parse(sessionStorage.getItem("userData"));
   const navigate = useNavigate();
   const [ThemeMode, toggleTheme] = useTheme();
-  // 색맹모드 구현시 삭제
-  const [btn2, setBtn2] = useState(false);
+  const { isBlind, setIsBlind } = useContext(ColorBlindContext);
 
   const [user, setUser] = useState(null); // 사용자 정보를 상태로 관리
   const onClick = () => {
@@ -100,8 +99,8 @@ export default function MyPage() {
             </>
           )}
         </article>
-        <SettingBtn txt1={t(`myPage.mp3`)} txt2={t(`myPage.mp4`)} onClick={() => toggleTheme()} ThemeMode={ThemeMode} left={ThemeMode} left1="dark" />
-        <SettingBtn txt1={t(`myPage.mp5`)} txt2={t(`myPage.mp6`)} onClick={() => setBtn2(!btn2)} ThemeMode={ThemeMode} left={btn2} left1={true} />
+        <SettingBtn txt1={t(`myPage.mp3`)} txt2={t(`myPage.mp4`)} onClick={() => toggleTheme()} ThemeMode={ThemeMode} left={ThemeMode === "dark"} />
+        <SettingBtn txt1={t(`myPage.mp5`)} txt2={t(`myPage.mp6`)} onClick={() => setIsBlind(!isBlind)} ThemeMode={ThemeMode} left={isBlind} />
         <SettingBtn
           txt1={t(`myPage.mp7`)}
           txt2={t(`myPage.mp8`)}
@@ -113,8 +112,7 @@ export default function MyPage() {
             }
           }}
           ThemeMode={ThemeMode}
-          left={i18n.language}
-          left1={"en"}
+          left={i18n.language === "en"}
         />
         <p id="logout" onClick={onClick}>
           {t(`myPage.mp9`)}

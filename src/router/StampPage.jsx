@@ -4,23 +4,25 @@ import GrayStamp from "../assets/stampGray.svg";
 import GreenStamp from "../assets/stampGreen.svg";
 import BlackStamp from "../assets/stampBlack.js";
 import DropDown from "../components/DropDown";
-import { useTheme } from "../context/themeProvider.js";
-import { useState } from "react";
+import { ColorBlindContext, useTheme } from "../context/themeProvider.js";
+import { useContext, useState } from "react";
 import IsLogin from "../components/IsLogin.js";
 import { apiStampInfo } from "../api.js";
 
 export default function StampPage() {
-  const stampArray =[]
+  const stampArray = [];
   const [user, setUser] = useState(null);
+  const { isBlind } = useContext(ColorBlindContext);
+  console.log(isBlind);
   const updateUser = (userData) => {
     setUser(userData);
   };
-  if(user) {
+  if (user) {
     const res = apiStampInfo(user.token, user.user_id);
-    res.then(result => {
-      result.data.forEach(obj => {
-        stampArray.push(obj)
-      })
+    res.then((result) => {
+      result.data.forEach((obj) => {
+        stampArray.push(obj);
+      });
     });
   }
   const [ThemeMode] = useTheme();

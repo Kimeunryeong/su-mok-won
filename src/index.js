@@ -9,7 +9,7 @@ import IntroSumok from "./router/IntroSumok";
 import StampPage from "./router/StampPage";
 import MyPage from "./router/MyPage";
 import IndoorInfo from "./router/IndoorInfo";
-import { ThemeProvider } from "./context/themeProvider";
+import { ColorBlindProvider, ThemeProvider } from "./context/themeProvider";
 import { GlobalStyle } from "./theme/GlobalStyle.js";
 import MapPage from "./router/MapPage.jsx";
 import QrPage from "./router/QrPage.jsx";
@@ -89,8 +89,10 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider>
     <GlobalStyle />
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <ColorBlindProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </ColorBlindProvider>
   </ThemeProvider>
 );

@@ -2,6 +2,7 @@ import { lightTheme, darkTheme } from "../theme/theme.js";
 import { createContext, useState, useContext, useCallback } from "react";
 import { ThemeProvider as StyledProvider } from "styled-components";
 
+// 다크모드
 export const ThemeProvider = ({ children }) => {
   const [ThemeMode, setThemeMode] = useState("light");
   const themeObject = ThemeMode === "light" ? lightTheme : darkTheme;
@@ -29,3 +30,12 @@ export function useTheme() {
 }
 
 const ThemeContext = createContext({});
+
+// 색맹모드
+export const ColorBlindContext = createContext();
+
+export const ColorBlindProvider = ({ children }) => {
+  const [isBlind, setIsBlind] = useState(false);
+
+  return <ColorBlindContext.Provider value={{ isBlind, setIsBlind }}>{children}</ColorBlindContext.Provider>;
+};

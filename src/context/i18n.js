@@ -89,9 +89,9 @@ i18n.use(initReactI18next).init({
           iI21: "iI21",
         },
         mapPage: {
-          m0: "m0",
-          m1: "m1",
-          m2: "m2",
+          m0: "QR code",
+          m1: "Cafe",
+          m2: "Toilet",
           m3: "m3",
           m4: "m4",
           m5: "m5",
