@@ -5,11 +5,18 @@ import GreenStamp from "../assets/stampGreen.svg";
 import BlackStamp from "../assets/stampBlack.js";
 import DropDown from "../components/DropDown";
 import { useTheme } from "../context/themeProvider.js";
+import { useState } from "react";
+import IsLogin from "../components/IsLogin.js";
 
 export default function StampPage() {
+  const [user, setUser] = useState(null);
+  const updateUser = (userData) => {
+    setUser(userData);
+  };
   const [ThemeMode] = useTheme();
   return (
     <Layout>
+      <IsLogin updateUser={updateUser} />
       <div className="stamp-section">
         {/* 드롭다운 */}
         <DropDown />

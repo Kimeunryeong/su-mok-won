@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const IsLogin = ({ updateUser }) => {
   const navigate = useNavigate();
@@ -8,6 +9,13 @@ const IsLogin = ({ updateUser }) => {
   useEffect(() => {
     const userData = JSON.parse(sessionStorage.getItem("userData"));
     if (!userData) {
+      Swal.fire({
+        text: "로그인이 필요합니다.",
+        padding: "20px 0",
+        width: "350px",
+        confirmButtonText: "확인",
+        buttonsStyling: false,
+      });
       navigate("/login"); // 로그인 페이지 경로로 이동합니다.
       return;
     }
