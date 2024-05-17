@@ -52,7 +52,6 @@ export default function Home() {
       });
     }
   }, []);
-  console.log(stampArray);
   const guideNav = userData ? false : true;
   const { t } = useTranslation();
 

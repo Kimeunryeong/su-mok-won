@@ -45,7 +45,8 @@ export default function StampPage() {
               ) : (
                 <>
                   {isBlind === false && <img src={GreenStamp} alt="완성 스탬프" />}
-                  {isBlind === true && ThemeMode === "dark" ? <BlackStamp fillColor="#fff" /> : <BlackStamp fillColor="#000" />}
+                  {isBlind === true && ThemeMode === "dark" && <BlackStamp fillColor="#fff" />}
+                  {isBlind === true && ThemeMode !== "dark" && <BlackStamp fillColor="#000" />}
                 </>
               )}
             </p>
