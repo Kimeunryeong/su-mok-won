@@ -28,6 +28,8 @@ export default function KakaoMap({ userLocation, iwContent, markers }) {
       case "화장실":
         positions = toiletPositions;
         break;
+      default:
+        break;
     }
 
     positions.forEach((p, index) => {

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import Layout from "../components/Layout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "../context/themeProvider.js";
-import infoMark from "../assets/qr-scan.png";
-import { GrFormNext, GrClose } from "react-icons/gr";
+import Layout from "../components/Layout";
 import Weather from "../components/Weather.jsx";
-import { PiPlantLight, PiTreeLight, PiFlowerTulipLight } from "react-icons/pi";
+import infoMark from "../assets/qr-scan.png";
+import stampSmall from "../assets/stampApprove.png";
+import { GrFormNext, GrClose } from "react-icons/gr";
+import { PiPlantLight, PiTreeLight, PiFlowerTulipLight, PiQuestionLight } from "react-icons/pi";
 
 function GuideEle({ zIndex, txt, bg, close }) {
   return (
@@ -33,16 +34,19 @@ export default function Home() {
   let [guideNum, setGuideNum] = useState(1);
   const [guide, setGuide] = useState(<div></div>);
   const [guideZin, setGuideZin] = useState("z-10");
+  const nav = useNavigate();
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  const guideNav = userData ? false : true;
 
-  const nextGuide = () => {
+  const nextGuide = (guideNav) => {
     if (guideNum === 1) {
       setGuide(<GuideEle zIndex="z-30" txt="QR 코드는 대구 수목원 곳곳에 있습니다. 카메라 렌즈를 QR코드에 가까이 대주세요." bg="bg-[url('./assets/guide2.svg')]" />);
       setGuideZin("z-30");
     } else if (guideNum === 2) {
-      setGuide(<GuideEle zIndex="z-30" txt="qr 코드의 스캔이 완료되면 스탬프가 찍힙니다. 찍힌 스탬프는 스탬프 메뉴에서 확인할 수 있습니다." bg="bg-[url('./assets/guide3.svg')]" />);
+      setGuide(<GuideEle zIndex="z-30" txt="QR 코드를 스캔하면 스탬프가 찍힙니다. 스탬프를 모으고 다양한 경품을 받아가세요!" bg="bg-[url('./assets/guide3.svg')]" />);
     } else if (guideNum === 3) {
-      setGuide(<GuideEle zIndex="z-30" txt="찍힌 스탬프의 갯수에 따라 다양한 경품을 받을 수 있습니다." bg="bg-[url('./assets/guide4.svg')]" close={true} />);
-    } else if (guideNum === 4) {
+      // setGuide(<GuideEle zIndex="z-30" txt="찍힌 스탬프의 갯수에 따라 다양한 경품을 받을 수 있습니다." bg="bg-[url('./assets/guide4.svg')]" close={true} />);
+      if (guideNav) nav("/login");
       setGuideZin("z-10");
       setShowGuide(false);
       return;
@@ -52,30 +56,47 @@ export default function Home() {
   return (
     <Layout>
       {showGuide && (
-        <div onClick={nextGuide} className={`absolute h-[108vh] -top-[60px] w-screen ${guideZin}`}>
+        <div onClick={() => nextGuide(guideNav)} className={`absolute h-[108vh] -top-[60px] w-screen ${guideZin}`}>
           {guide}
         </div>
       )}
-      <div className="w-full h-full flex flex-col justify-center items-center pt-8 pb-10">
-        <div
-          className="w-[300px] h-[100px] relative flex items-center"
-          onClick={() => {
-            setGuide(
-              <GuideEle
-                txt="아래쪽의 QR 촬영 버튼을 누르면
-              카메라가 켜집니다."
-                bg="bg-black/70"
-              />
-            );
-            setGuideNum(1);
-            setShowGuide(true);
-          }}
-        >
-          <div className="w-full h-full flex flex-col ml-4 justify-center">
-            <span className="text-2xl">앱 이용 방법</span>
-            <span>스탬프 찍고 경품 받아가세요!</span>
+      <div className="w-full h-full flex flex-col justify-center items-center pt-[76px] pb-10">
+        {userData && (
+          <div
+            className="absolute top-[65px] right-6 text-4xl"
+            onClick={() => {
+              setGuide(<GuideEle txt="회원 가입 후, 아래쪽의 QR 촬영 버튼을 누르면 카메라가 켜집니다." bg="bg-black/70" />);
+              setGuideNum(1);
+              setShowGuide(true);
+            }}
+          >
+            <PiQuestionLight color="#777" />
           </div>
-          <img className="absolute right-0 top-[22px] w-[30%] -z-10" src={infoMark} alt="안내 이미지" />
+        )}
+        <div className="w-[300px] h-[100px] relative flex items-center">
+          {!userData && (
+            <>
+              <div
+                onClick={() => {
+                  setGuide(<GuideEle txt="회원 가입 후, 아래쪽의 QR 촬영 버튼을 누르면 카메라가 켜집니다." bg="bg-black/70" />);
+                  setGuideNum(1);
+                  setShowGuide(true);
+                }}
+                className="w-full h-full flex flex-col ml-4 justify-center"
+              >
+                <span className="text-2xl">앱 이용 방법</span>
+                <span>스탬프 찍고 경품 받아가세요!</span>
+              </div>
+              <img className="absolute right-0 top-[22px] w-[30%] -z-10" src={infoMark} alt="안내 이미지" />
+            </>
+          )}
+          {userData && (
+            <div className="w-full h-full pt-4">
+              <div className="text-2xl mb-[2px]">{userData.user_id} 님 안녕하세요!</div>
+              <span className="text-lg text-[#888]">내가 모은 스탬프: 0개</span>
+              <img className="absolute right-0 top-2 w-[28%] -z-10" src={stampSmall} alt="안내 이미지" />
+            </div>
+          )}
         </div>
         <div className="w-[90%] max-w-[370px] flex flex-wrap items-center gap-y-3 mx-auto">
           <Link to="/introsumok" className="w-full h-[150px]">

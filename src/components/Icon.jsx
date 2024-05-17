@@ -3,7 +3,7 @@ import { FaHome, FaMap, FaStamp, FaUser } from "react-icons/fa";
 import { useTheme } from "../context/themeProvider";
 
 export default function Icon({ text, icon, size, green }) {
-  const [ThemeMode, toggleTheme] = useTheme();
+  const [ThemeMode] = useTheme();
   let IconImg;
   switch (icon) {
     case "home":
@@ -17,6 +17,8 @@ export default function Icon({ text, icon, size, green }) {
       break;
     case "user":
       IconImg = FaUser;
+      break;
+    default:
       break;
   }
   return (
