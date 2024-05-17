@@ -13,7 +13,6 @@ import flagusa from "../assets/flagUSA.png";
 import flagko from "../assets/flagKor.png";
 import { apiStampInfo } from "../api.js";
 
-
 function GuideEle({ zIndex, txt, bg, close }) {
   const { t } = useTranslation();
   return (
@@ -44,8 +43,7 @@ export default function Home() {
   const nav = useNavigate();
   const userData = JSON.parse(sessionStorage.getItem("userData"));
   const [stampArray, setStampArray] = useState([]);
- 
-  
+
   useEffect(() => {
     if (userData) {
       const res = apiStampInfo(userData.token, userData.user_id);
@@ -54,7 +52,7 @@ export default function Home() {
       });
     }
   }, []);
-  console.log(stampArray)
+  console.log(stampArray);
   const guideNav = userData ? false : true;
   const { t } = useTranslation();
 
@@ -75,7 +73,6 @@ export default function Home() {
   };
   return (
     <Layout>
-      
       {showGuide && (
         <div onClick={() => nextGuide(guideNav)} className={`absolute h-[108vh] -top-[60px] w-screen ${guideZin}`}>
           {guide}
@@ -129,7 +126,9 @@ export default function Home() {
               <div className="text-2xl mb-[2px]">
                 {userData.user_id} {t(`main.hello2`)}
               </div>
-              <span className="text-lg text-[#888]">{t(`main.hello3`)}</span>
+              <span className="text-lg text-[#888]">
+                {t(`main.hello3`)} {stampArray.filter((s) => s.is_collected === 1).length} {t(`main.hello4`)}
+              </span>
               <img className="absolute right-0 top-2 w-[28%] -z-10" src={stampSmall} alt="안내 이미지" />
             </div>
           )}
