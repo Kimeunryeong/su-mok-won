@@ -15,6 +15,9 @@ export default function IndoorInfo2() {
         <Title title={t(`indoor2.iI0`)} />
         <article>
           <div className="forestcul-text">{t(`indoor2.iI1`)}</div>
+          {/* 위치 */}
+          <GreenDot title={t(`indoor1.iI13`)} />
+          지도
           {/* 이용시간 */}
           <div className="intro-time">
             <GreenDot title={t(`indoor2.iI2`)} />
