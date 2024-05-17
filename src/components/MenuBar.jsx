@@ -18,10 +18,10 @@ export default function MenuBar() {
     <>
       <nav className={`fixed bottom-0 z-20 w-full h-[70px] ${ThemeMode === "dark" ? "bg-[#292929]" : "bg-[#f1f1f1]"} flex items-center justify-between px-2`}>
         <Link to="/home" className="w-[60px]">
-          <Icon text={t(`menu.home`)} icon="home" size="30px" green={/^(\/home|\/introsumok|\/indoorinfo|\/shelterinfo|\/indoorinfo2|\/)$/.test(pathname) ? "green" : ""} />
+          <Icon text={t(`menu.home`)} icon="home" size="30px" green={/^(\/home|\/introsumok|\/indoorinfo|\/shelterinfo|\/indoorinfo2|\/)$/.test(pathname) ? true : false} />
         </Link>
         <Link to="/map" className="w-[60px]">
-          <Icon text={t(`menu.map`)} icon="map" size="30px" green={pathname === "/map" ? "green" : ""} />
+          <Icon text={t(`menu.map`)} icon="map" size="30px" green={pathname === "/map" ? true : false} />
         </Link>
         <div id="qrCode" ref={qrRef}>
           <Link to="/qr" className={`relative w-[75px] h-[75px] rounded-full ${ThemeMode === "dark" ? "bg-[#292929]" : "bg-[#f1f1f1]"} mb-[60px] flex flex-col items-center justify-center`}>
@@ -32,10 +32,10 @@ export default function MenuBar() {
           </Link>
         </div>
         <Link to="/stamp" className="w-[60px]">
-          <Icon text={t(`menu.stamp`)} icon="stamp" size="26px" green={pathname === "/stamp" ? "green" : ""} />
+          <Icon text={t(`menu.stamp`)} icon="stamp" size="26px" green={pathname === "/stamp" ? true : false} />
         </Link>
         <Link to="/mypage" className="w-[60px]">
-          <Icon text={t(`menu.mypage`)} icon="user" size="26px" green={pathname === "/mypage" ? "green" : ""} />
+          <Icon text={t(`menu.mypage`)} icon="user" size="26px" green={pathname === "/mypage" ? true : false} />
         </Link>
       </nav>
     </>
