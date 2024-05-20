@@ -5,6 +5,8 @@ import Title from "../components/Title";
 import Hours from "../components/Hours";
 import GreenDot from "../components/GreenDot";
 import { useTranslation } from "react-i18next";
+import img1 from "../assets/indoorInfo (1).jpg";
+import img2 from "../assets/indoorInfo (2).jpg";
 const { kakao } = window;
 
 export default function IndoorInfo() {
@@ -58,7 +60,7 @@ export default function IndoorInfo() {
                   {t(`indoor1.iI9`)} <p>{t(`indoor1.iI10`)}</p>
                 </div>
                 <div className="floorImg">
-                  <div></div>
+                  <img src={img1} alt="이미지" />
                 </div>
               </div>
               <div className="floorInfo-con-box">
@@ -67,7 +69,7 @@ export default function IndoorInfo() {
                   <p>{t(`indoor1.iI12`)}</p>
                 </div>
                 <div className="floorImg">
-                  <div></div>
+                  <img src={img2} alt="이미지" />
                 </div>
               </div>
             </div>

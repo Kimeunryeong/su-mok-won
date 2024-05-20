@@ -6,6 +6,8 @@ import Hours from "../components/Hours";
 import GreenDot from "../components/GreenDot";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import img1 from "../assets/indoorInfo2 (1).jpg";
+import img2 from "../assets/indoorInfo2 (2).jpg";
 const { kakao } = window;
 
 export default function IndoorInfo2() {
@@ -74,7 +76,7 @@ export default function IndoorInfo2() {
                   {t(`indoor2.iI18`)} <p>{t(`indoor2.iI19`)}</p>
                 </div>
                 <div className="floorImg">
-                  <div></div>
+                  <img src={img1} alt="" />
                 </div>
               </div>
               <div className="floorInfo-con-box">
@@ -83,7 +85,7 @@ export default function IndoorInfo2() {
                   <p>{t(`indoor2.iI21`)}</p>
                 </div>
                 <div className="floorImg">
-                  <div></div>
+                  <img src={img2} alt="" />
                 </div>
               </div>
             </div>
