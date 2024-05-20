@@ -17,7 +17,7 @@ function DropdownBtn({ onClick, icon, text1, text2, border }) {
   );
 }
 
-export default function DropdownMenu() {
+export default function DropdownMenu({ count }) {
   const { t } = useTranslation();
   const [selectedMenu, setSelectedMenu] = useState([t(`stampPage.sp0`), t(`stampPage.sp1`), FaTooth]);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -40,11 +40,16 @@ export default function DropdownMenu() {
 
   // 컴포넌트가 언마운트될 때 이벤트 리스너 정리
   useEffect(() => {
+    if (1 < count && count <= 3) {
+      setSelectedMenu([t(`stampPage.sp2`), t(`stampPage.sp3`), FaSoap]);
+    } else if (3 < count) {
+      setSelectedMenu([t(`stampPage.sp4`), t(`stampPage.sp5`), FaBagShopping]);
+    }
     document.addEventListener("click", handleOutsideClick);
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
-  }, []);
+  }, [count]);
 
   return (
     <div className="relative my-7 inline-block text-left" ref={menuRef}>
