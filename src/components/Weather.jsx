@@ -13,7 +13,7 @@ export default function Weather() {
   const [weatherData, setWeatherData] = useState(null);
   const { t } = useTranslation();
 
-  const apiKey = "6a0d33958b14a3c26fa985a6fecc4763"; // API 키를 직접 지정
+  const apiKey = "6a0d33958b14a3c26fa985a6fecc4763";
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=35.799208845005865&lon=128.52369024972057&appid=${apiKey}`;
 
   useEffect(() => {
@@ -21,6 +21,7 @@ export default function Weather() {
       .get(url)
       .then((responseData) => {
         const data = responseData.data;
+        console.log(data);
         const tempCelsius = (data.main.temp - 273.15).toFixed(0);
         setWeatherData({
           weather: data.weather[0].description,
