@@ -28,8 +28,8 @@ i18n.use(initReactI18next).init({
           menu1: "menu1",
           menu2: "m2",
           menu3: "m3",
-          weather0: "w0",
-          weather1: "w1",
+          weather0: "The weather at arboretum is",
+          weather1: "Getting weather information...",
         },
         introSumok: {
           iS0: "asdf0",

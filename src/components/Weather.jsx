@@ -62,7 +62,7 @@ export default function Weather() {
   return (
     <>
       {weatherData ? (
-        <div className="flex items-center justify-center gap-x-2 text-center text-lg">
+        <div className="flex flex-wrap items-center justify-center gap-x-2 text-center text-lg">
           <p>{t(`main.weather0`)}</p>
           <img className="weatherIconImg w-7" src={weatherIcon} alt="날씨" />
           <p>{weatherData.temp}℃</p>

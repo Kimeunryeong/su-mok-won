@@ -3,6 +3,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { useTheme } from "../context/themeProvider";
 import { FaTooth, FaSoap, FaBagShopping } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";
+import stampCircle from "../assets/stampCircle.svg";
 
 function DropdownBtn({ onClick, icon, text1, text2, border }) {
   return (
