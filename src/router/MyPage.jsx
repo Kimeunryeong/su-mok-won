@@ -12,7 +12,6 @@ import { useTranslation } from "react-i18next";
 import i18n from "../context/i18n.js";
 import { TbLineScan } from "react-icons/tb";
 
-
 function SettingBtn({ txt1, txt2, onClick, ThemeMode, left, onOff }) {
   return (
     <div className={`settingBtn ${ThemeMode === "dark" ? "DarkSettingBtn" : ""}`} onClick={onClick}>
@@ -84,9 +83,9 @@ export default function MyPage() {
     mutate(modifiedData);
   };
   const data = {
-    text : '찍힘',
-    user : user
-  }
+    text: "찍힘",
+    user: user,
+  };
   return (
     <Layout>
       <section id="myPage">
@@ -96,12 +95,7 @@ export default function MyPage() {
           {/* 사용자 정보를 이용하여 마이페이지 렌더링 */}
           {user && (
             <>
-              <div className="flex items-start gap-x-1">
-                <h2>{user?.user_id + t(`myPage.mp0`)}</h2>
-                <button className="h-[27px] pt-1">
-                  <TbLineScan size="100%" />
-                </button>
-              </div>
+              <h2>{user?.user_id + t(`myPage.mp0`)}</h2>
               <div id="myPW">{t(`myPage.mp1`)}</div>
               <form id="accountInfo" onSubmit={handleSubmit(onValid)} className="flex items-end">
                 <input {...register("passwordEdit")} type="password" placeholder="******" className={`${ThemeMode === "dark" ? "bg-[#111]" : "bg-inherit"}`} />
