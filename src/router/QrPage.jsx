@@ -1,17 +1,39 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import jsQR from "jsqr";
 import "../style/qrpage.css";
 import axios from "axios"; // axios 추가
+import IsLogin from "../components/IsLogin";
+import Swal from "sweetalert2";
 
 export default function QrPage() {
   const [permissionGranted, setPermissionGranted] = useState(null);
   const [qrData, setQrData] = useState(null);
+  const [user, setUser] = useState(null);
+  const [userLocation, setUserLocation] = useState({});
   const [videoStream, setVideoStream] = useState(null);
+  const navigate = useNavigate();
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
-
+  const getCurrentLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation({ latitude, longitude });
+        },
+        (error) => {
+          console.error("내 위치 가져오기 실패:", error);
+          return { error };
+        }
+      );
+    } else {
+      console.error("브라우저가 Geolocation API를 지원하지 않습니다.");
+      return { error: "브라우저가 Geolocation API를 지원하지 않습니다." };
+    }
+  };
+  getCurrentLocation();
   useEffect(() => {
     const requestCameraPermission = async () => {
       try {
@@ -46,22 +68,35 @@ export default function QrPage() {
         });
       }
     };
-  }, [permissionGranted, videoStream]);
+  }, [permissionGranted, videoStream, user]);
 
   useEffect(() => {
     if (qrData) {
       // qrData가 변경될 때마다 서버에 데이터 전송
-      sendDataToServer(qrData);
+      sendDataToServer(qrData,user);
     }
-  }, [qrData]);
-
-  const sendDataToServer = async (data) => {
+  }, [qrData,user]);
+  const updateUser = (userData) => {
+    setUser(userData);
+  };
+  const sendDataToServer = async (data,user) => {
     try {
       const response = await axios.post(
-        "https://port-0-sumokwonserver-17xco2nlstnj7hw.sel5.cloudtype.app/users/testQr",
-        { data }
-      ); // 서버 엔드포인트와 데이터 전송
+        "http://localhost:8000/users/testQr",
+        { data, user, userLocation }
+      );
       console.log("데이터 전송 완료:", response.data);
+      const { result, message} = response.data
+      if(result === true) {
+        Swal.fire({
+          text: message,
+          padding: "20px 0",
+          width: "350px",
+          confirmButtonText: "확인",
+          buttonsStyling: false,
+        });
+        navigate("/stamp")
+      }
     } catch (error) {
       console.error("데이터 전송 중 오류 발생:", error);
     }
@@ -101,7 +136,10 @@ export default function QrPage() {
   }, [permissionGranted, videoStream]);
 
   return (
+    <>
+    <IsLogin updateUser={updateUser} />
     <div className="qrSection">
+       
       <Link to="/home" className="qrArrow">
         <IoIosArrowBack color="white" />
       </Link>
@@ -119,7 +157,7 @@ export default function QrPage() {
         }}
       >
         {qrData && (
-          <p style={{ position: "absolute", top: 10, left: 10, zIndex: 1 }}>
+          <p style={{ position: "absolute", top: 0, left: 0, zIndex: 1 }}>
             QR 코드 데이터: {qrData}
           </p>
         )}
@@ -150,5 +188,6 @@ export default function QrPage() {
         )}
       </div>
     </div>
+    </>
   );
 }

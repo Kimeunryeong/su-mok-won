@@ -83,7 +83,7 @@ const router = createBrowserRouter([
         element: <Google />,
       },
       {
-        path : "/qr",
+        path : "/qrcode",
         element : <QR />
       }
     ],
