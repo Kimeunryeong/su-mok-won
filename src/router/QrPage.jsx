@@ -75,6 +75,7 @@ export default function QrPage() {
       // qrData가 변경될 때마다 서버에 데이터 전송
       sendDataToServer(qrData, user);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qrData, user]);
   const updateUser = (userData) => {
     setUser(userData);
@@ -97,8 +98,7 @@ export default function QrPage() {
           buttonsStyling: false,
         });
         navigate("/stamp");
-      }
-      else {
+      } else {
         Swal.fire({
           text: message,
           padding: "20px 0",

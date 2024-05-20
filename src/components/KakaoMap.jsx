@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
-import { stampPositions, toiletPositions, parkPositions, cafePosition } from "../lib/positions.js";
+import {
+  stampPositions,
+  toiletPositions,
+  parkPositions,
+  cafePosition,
+} from "../lib/positions.js";
 const { kakao } = window;
 
 export default function KakaoMap({ userLocation, iwContent, markers }) {
@@ -41,13 +46,20 @@ export default function KakaoMap({ userLocation, iwContent, markers }) {
           offset: new kakao.maps.Point(11, 37), // 마커 좌표에 일치시킬 이미지 내에서의 좌표
         },
         img = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions);
-      const marker = new kakao.maps.Marker({ position: p.latlng, title: p.title, image: img });
+      const marker = new kakao.maps.Marker({
+        position: p.latlng,
+        title: p.title,
+        image: img,
+      });
       marker.setMap(map);
     });
 
     // 사용자의 위치가 있을 경우 마커로 표시
     if (userLocation) {
-      const userPosition = new kakao.maps.LatLng(userLocation.latitude, userLocation.longitude);
+      const userPosition = new kakao.maps.LatLng(
+        userLocation.latitude,
+        userLocation.longitude
+      );
 
       // 사용자 위치를 나타낼 마커 생성
       const marker = new kakao.maps.Marker({
@@ -69,6 +81,7 @@ export default function KakaoMap({ userLocation, iwContent, markers }) {
       // 지도 중심을 사용자의 위치로 이동
       map.setCenter(userPosition);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLocation, markers]);
 
   return (
