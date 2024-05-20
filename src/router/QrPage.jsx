@@ -98,6 +98,16 @@ export default function QrPage() {
         });
         navigate("/stamp");
       }
+      else {
+        Swal.fire({
+          text: message,
+          padding: "20px 0",
+          width: "350px",
+          confirmButtonText: "확인",
+          buttonsStyling: false,
+        });
+        navigate("/stamp");
+      }
     } catch (error) {
       console.error("데이터 전송 중 오류 발생:", error);
     }
