@@ -19,7 +19,7 @@ import Kakao from "./router/Kakao.jsx";
 import Google from "./router/Google.jsx";
 import IndoorInfo2 from "./router/IndoorInfo2.jsx";
 import QR from "./router/QR.jsx";
-import AdminQrScan from "./router/AdminQrScan.jsx";
+
 
 const router = createBrowserRouter([
   {
@@ -87,10 +87,7 @@ const router = createBrowserRouter([
         path: "/qrcode",
         element: <QR />,
       },
-      {
-        path: "/adminqr",
-        element: <AdminQrScan />,
-      },
+      
     ],
   },
 ]);

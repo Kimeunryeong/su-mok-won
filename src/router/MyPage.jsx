@@ -10,7 +10,7 @@ import { useMutation } from "react-query";
 import { apiPasswordEdit } from "../api.js";
 import { useTranslation } from "react-i18next";
 import i18n from "../context/i18n.js";
-import QRCode from "qrcode.react";
+
 
 function SettingBtn({ txt1, txt2, onClick, ThemeMode, left, onOff }) {
   return (
@@ -96,7 +96,6 @@ export default function MyPage() {
           {user && (
             <>
               <h2>{user?.user_id + t(`myPage.mp0`)}</h2>
-              <QRCode value={JSON.stringify(data)} size="32" />
               <div id="myPW">{t(`myPage.mp1`)}</div>
               <form id="accountInfo" onSubmit={handleSubmit(onValid)} className="flex items-end">
                 <input {...register("passwordEdit")} type="password" placeholder="******" className={`${ThemeMode === "dark" ? "bg-[#111]" : "bg-inherit"}`} />
