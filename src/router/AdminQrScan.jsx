@@ -11,29 +11,11 @@ export default function AdminQrScan() {
   const [permissionGranted, setPermissionGranted] = useState(null);
   const [qrData, setQrData] = useState(null);
   const [user, setUser] = useState(null);
-  const [userLocation, setUserLocation] = useState({});
   const [videoStream, setVideoStream] = useState(null);
   const navigate = useNavigate();
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
-  const getCurrentLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setUserLocation({ latitude, longitude });
-        },
-        (error) => {
-          console.error("내 위치 가져오기 실패:", error);
-          return { error };
-        }
-      );
-    } else {
-      console.error("브라우저가 Geolocation API를 지원하지 않습니다.");
-      return { error: "브라우저가 Geolocation API를 지원하지 않습니다." };
-    }
-  };
-  getCurrentLocation();
+  
   useEffect(() => {
     const requestCameraPermission = async () => {
       try {
@@ -85,7 +67,6 @@ export default function AdminQrScan() {
       const response = await axios.post("http://localhost:8000/users/adminQr", {
         data,
         user,
-        userLocation,
       });
       console.log("데이터 전송 완료:", response.data);
       const { result, message } = response.data;

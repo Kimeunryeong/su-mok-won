@@ -83,7 +83,8 @@ export default function MyPage() {
     mutate(modifiedData);
   };
   const data = {
-    text : '찍힘'
+    text : '찍힘',
+    user : user
   }
   return (
     <Layout>
