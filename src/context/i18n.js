@@ -11,6 +11,7 @@ i18n.use(initReactI18next).init({
           qr: "QR Scan",
           stamp: "Stamp",
           mypage: "My page",
+          mypage2: "Login",
         },
         main: {
           guide0: "asdf0",
@@ -160,6 +161,7 @@ i18n.use(initReactI18next).init({
           qr: "QR 촬영",
           stamp: "스탬프",
           mypage: "마이페이지",
+          mypage2: "로그인",
         },
         main: {
           guide0: "회원 가입 후, 아래쪽의 QR 촬영 버튼을 누르면 카메라가 켜집니다.",
