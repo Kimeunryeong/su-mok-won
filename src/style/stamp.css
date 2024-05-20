@@ -12,6 +12,7 @@
   gap: 25px;
   align-items: center;
 }
-.stamp-box img {
+.stamp-box img,
+.stamp-box svg {
   width: 140px;
 }
