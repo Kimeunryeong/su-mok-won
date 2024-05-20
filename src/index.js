@@ -20,6 +20,7 @@ import Google from "./router/Google.jsx";
 import IndoorInfo2 from "./router/IndoorInfo2.jsx";
 import QR from "./router/QR.jsx";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -83,9 +84,10 @@ const router = createBrowserRouter([
         element: <Google />,
       },
       {
-        path : "/qrcode",
-        element : <QR />
-      }
+        path: "/qrcode",
+        element: <QR />,
+      },
+      
     ],
   },
 ]);

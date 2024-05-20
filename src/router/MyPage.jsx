@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "../context/i18n.js";
 import { TbLineScan } from "react-icons/tb";
 
+
 function SettingBtn({ txt1, txt2, onClick, ThemeMode, left, onOff }) {
   return (
     <div className={`settingBtn ${ThemeMode === "dark" ? "DarkSettingBtn" : ""}`} onClick={onClick}>
@@ -82,6 +83,10 @@ export default function MyPage() {
     };
     mutate(modifiedData);
   };
+  const data = {
+    text : '찍힘',
+    user : user
+  }
   return (
     <Layout>
       <section id="myPage">
