@@ -279,7 +279,7 @@ i18n.use(initReactI18next).init({
           mp3: "다크 모드",
           mp4: "앱 화면을 어둡게 변경합니다.",
           mp5: "색맹 모드",
-          mp6: "색깔을 구분하기 힘든 분들을 위해 찍힌 스탬프의 모양을 변경합니다.",
+          mp6: "색상을 구분하기 힘든 분들을 위해 일부 요소의 색상을 변경합니다.",
           mp7: "Change language",
           mp8: "언어를 영어로 변경합니다.<br />This changes the app's language to English.",
           mp9: "로그아웃",
