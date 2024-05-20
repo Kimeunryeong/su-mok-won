@@ -73,21 +73,22 @@ export default function QrPage() {
   useEffect(() => {
     if (qrData) {
       // qrData가 변경될 때마다 서버에 데이터 전송
-      sendDataToServer(qrData,user);
+      sendDataToServer(qrData, user);
     }
-  }, [qrData,user]);
+  }, [qrData, user]);
   const updateUser = (userData) => {
     setUser(userData);
   };
-  const sendDataToServer = async (data,user) => {
+  const sendDataToServer = async (data, user) => {
     try {
-      const response = await axios.post(
-        "http://localhost:8000/users/testQr",
-        { data, user, userLocation }
-      );
+      const response = await axios.post("http://localhost:8000/users/testQr", {
+        data,
+        user,
+        userLocation,
+      });
       console.log("데이터 전송 완료:", response.data);
-      const { result, message} = response.data
-      if(result === true) {
+      const { result, message } = response.data;
+      if (result === true) {
         Swal.fire({
           text: message,
           padding: "20px 0",
@@ -95,7 +96,7 @@ export default function QrPage() {
           confirmButtonText: "확인",
           buttonsStyling: false,
         });
-        navigate("/stamp")
+        navigate("/stamp");
       }
     } catch (error) {
       console.error("데이터 전송 중 오류 발생:", error);
@@ -137,57 +138,51 @@ export default function QrPage() {
 
   return (
     <>
-    <IsLogin updateUser={updateUser} />
-    <div className="qrSection">
-       
-      <Link to="/home" className="qrArrow">
-        <IoIosArrowBack color="white" />
-      </Link>
-      <p className="qrText">QR 코드를 촬영해주세요</p>
-      {permissionGranted === false && (
-        <p className="qrText">카메라 액세스 권한이 거부되었습니다.</p>
-      )}
-      <div
-        className="qrZone"
-        style={{
-          position: "relative",
-          width: "300px",
-          height: "300px",
-          overflow: "hidden",
-        }}
-      >
-        {qrData && (
-          <p style={{ position: "absolute", top: 0, left: 0, zIndex: 1 }}>
-            QR 코드 데이터: {qrData}
-          </p>
+      <IsLogin updateUser={updateUser} />
+      <div className="qrSection">
+        <Link to="/home" className="qrArrow">
+          <IoIosArrowBack color="white" />
+        </Link>
+        <p className="qrText">QR 코드를 촬영해주세요</p>
+        {permissionGranted === false && (
+          <p className="qrText">카메라 액세스 권한이 거부되었습니다.</p>
         )}
-        {permissionGranted !== false && (
-          <video
-            id="videoElement"
-            ref={videoRef}
-            autoPlay
-            playsInline
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          ></video>
-        )}
-        {permissionGranted !== false && (
-          <canvas
-            id="canvasElement"
-            ref={canvasRef}
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-            }}
-          ></canvas>
-        )}
+        <div
+          className="qrZone"
+          style={{
+            position: "relative",
+            width: "300px",
+            height: "300px",
+            overflow: "hidden",
+          }}
+        >
+          {permissionGranted !== false && (
+            <video
+              id="videoElement"
+              ref={videoRef}
+              autoPlay
+              playsInline
+              style={{
+                position: "absolute",
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            ></video>
+          )}
+          {permissionGranted !== false && (
+            <canvas
+              id="canvasElement"
+              ref={canvasRef}
+              style={{
+                position: "absolute",
+                width: "100%",
+                height: "100%",
+              }}
+            ></canvas>
+          )}
+        </div>
       </div>
-    </div>
     </>
   );
 }
