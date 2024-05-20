@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const IsLogin = ({ updateUser }) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태를 관리합니다.
+  const { t } = useTranslation();
 
   useEffect(() => {
     const userData = JSON.parse(sessionStorage.getItem("userData"));
     if (!userData) {
       Swal.fire({
-        text: "로그인이 필요합니다.",
+        text: t(`signUp.s1`),
         padding: "20px 0",
         width: "350px",
         confirmButtonText: "확인",
