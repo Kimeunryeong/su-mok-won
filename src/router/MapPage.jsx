@@ -1,35 +1,18 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import KakaoMap from "../components/KakaoMap";
-import {
-  stampPositions,
-  toiletPositions,
-  parkPositions,
-  cafePosition,
-} from "../lib/positions.js";
+import { stampPositions, toiletPositions, parkPositions, cafePosition } from "../lib/positions.js";
 import { FaRestroom } from "react-icons/fa";
 import { MdForest } from "react-icons/md";
 import { TbLineScan } from "react-icons/tb";
-import { ColorBlindContext, useTheme } from "../context/themeProvider.js";
+import { useTheme } from "../context/themeProvider.js";
 import { useTranslation } from "react-i18next";
 import i18n from "../context/i18n.js";
-import {
-  stampPositionsEng,
-  toiletPositionsEng,
-  parkPositionsEng,
-  cafePositionEng,
-} from "../lib/positionsEng.js";
+import { stampPositionsEng, toiletPositionsEng, parkPositionsEng, cafePositionEng } from "../lib/positionsEng.js";
 
 function MapBtn({ onClick, txt, border, Icon, bg }) {
   return (
-    <button
-      className={`w-[100px] py-5 border-2 rounded-md flex flex-col items-center justify-around ${
-        border
-          ? `border-[#119724] font-semibold ${bg && "bg-[#464646]"}`
-          : "border-gray-300"
-      } ${bg ? "bg-[#232325]" : "bg-gray-100"}`}
-      onClick={onClick}
-    >
+    <button className={`w-[100px] py-5 border-2 rounded-md flex flex-col items-center justify-around ${border ? `border-[#119724] font-semibold ${bg && "bg-[#464646]"}` : "border-gray-300"} ${bg ? "bg-[#232325]" : "bg-gray-100"}`} onClick={onClick}>
       <Icon className=" text-[50px] text-[#119724] mb-2" />
       <p>{txt}</p>
     </button>
@@ -43,8 +26,6 @@ export default function MapPage() {
   const [userLocation] = useState(null);
   const [iwContent] = useState("");
   const [markers, setMarkers] = useState("스탬프");
-  const { isBlind } = useContext(ColorBlindContext);
-  console.log(isBlind);
 
   // 내 위치 가져오기 함수
   // const getCurrentLocation = () => {
@@ -120,42 +101,17 @@ export default function MapPage() {
     <Layout>
       <div className="w-full flex flex-col justify-center items-center pt-8 pb-32 gap-4">
         <div className="flex flex-wrap gap-2 justify-center">
-          <MapBtn
-            txt={t(`mapPage.m0`)}
-            onClick={() => setMarkers("스탬프")}
-            border={markers === "스탬프"}
-            Icon={TbLineScan}
-            bg={ThemeMode === "dark"}
-          />
-          <MapBtn
-            txt={t(`mapPage.m1`)}
-            onClick={() => setMarkers("카페/쉼터")}
-            border={markers === "카페/쉼터"}
-            Icon={MdForest}
-            bg={ThemeMode === "dark"}
-          />
-          <MapBtn
-            txt={t(`mapPage.m2`)}
-            onClick={() => setMarkers("화장실")}
-            border={markers === "화장실"}
-            Icon={FaRestroom}
-            bg={ThemeMode === "dark"}
-          />
+          <MapBtn txt={t(`mapPage.m0`)} onClick={() => setMarkers("스탬프")} border={markers === "스탬프"} Icon={TbLineScan} bg={ThemeMode === "dark"} />
+          <MapBtn txt={t(`mapPage.m1`)} onClick={() => setMarkers("카페/쉼터")} border={markers === "카페/쉼터"} Icon={MdForest} bg={ThemeMode === "dark"} />
+          <MapBtn txt={t(`mapPage.m2`)} onClick={() => setMarkers("화장실")} border={markers === "화장실"} Icon={FaRestroom} bg={ThemeMode === "dark"} />
         </div>
         {/* 카카오지도 */}
-        <KakaoMap
-          userLocation={userLocation}
-          iwContent={iwContent}
-          markers={markers}
-        />
+        <KakaoMap userLocation={userLocation} iwContent={iwContent} markers={markers} />
         {errorMessage && <p>{errorMessage}</p>}
         <div className="flex flex-col w-full">
           {positions.map((p, index) => {
             return (
-              <div
-                className="flex items-center mx-8 py-4 gap-x-5 border-b border-gray-400 border-dotted"
-                key={index}
-              >
+              <div className="flex items-center mx-8 py-4 gap-x-5 border-b border-gray-400 border-dotted" key={index}>
                 <div className={`bgMarker bgMarker${index}`}></div>
                 <div>
                   <p className="text-xl mb-1 font-medium">{p.title}</p>

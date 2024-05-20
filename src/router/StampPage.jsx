@@ -33,13 +33,11 @@ export default function StampPage() {
       <IsLogin updateUser={updateUser} />
       <div className="stamp-section">
         {/* 드롭다운 */}
-        <DropDown />
+        <DropDown count={stampArray.filter((s) => s.is_collected === 1).length} />
         {/* 스탬프 */}
         <div className="stamp-box">
           {stampArray.map((stamp) => (
             <p key={stamp.stamp_id}>
-              {/* <img src={stamp.is_collected === 1 ? GreenStamp : GrayStamp} alt={stamp.is_collected === 1 ? "완성 스탬프" : "미완성 스탬프"} />
-              <BlackStamp fillColor={ThemeMode === "dark" ? "#fff" : "#000"} /> */}
               {stamp.is_collected !== 1 ? (
                 <img src={GrayStamp} alt="미완성 스탬프" />
               ) : (
@@ -52,6 +50,7 @@ export default function StampPage() {
             </p>
           ))}
         </div>
+        <div id="stampInfo">보상은 수목원 관리사무실에서 수령할 수 있습니다.</div>
       </div>
     </Layout>
   );

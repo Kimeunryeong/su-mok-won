@@ -21,7 +21,6 @@ export default function Weather() {
       .get(url)
       .then((responseData) => {
         const data = responseData.data;
-        console.log(data);
         const tempCelsius = (data.main.temp - 273.15).toFixed(0);
         setWeatherData({
           weather: data.weather[0].description,

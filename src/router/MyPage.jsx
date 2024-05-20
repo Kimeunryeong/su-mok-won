@@ -10,6 +10,7 @@ import { useMutation } from "react-query";
 import { apiPasswordEdit } from "../api.js";
 import { useTranslation } from "react-i18next";
 import i18n from "../context/i18n.js";
+import { TbLineScan } from "react-icons/tb";
 
 function SettingBtn({ txt1, txt2, onClick, ThemeMode, left, onOff }) {
   return (
@@ -90,7 +91,12 @@ export default function MyPage() {
           {/* 사용자 정보를 이용하여 마이페이지 렌더링 */}
           {user && (
             <>
-              <h2>{user?.user_id + t(`myPage.mp0`)}</h2>
+              <div className="flex items-start gap-x-1">
+                <h2>{user?.user_id + t(`myPage.mp0`)}</h2>
+                <button className="h-[27px] pt-1">
+                  <TbLineScan size="100%" />
+                </button>
+              </div>
               <div id="myPW">{t(`myPage.mp1`)}</div>
               <form id="accountInfo" onSubmit={handleSubmit(onValid)} className="flex items-end">
                 <input {...register("passwordEdit")} type="password" placeholder="******" className={`${ThemeMode === "dark" ? "bg-[#111]" : "bg-inherit"}`} />

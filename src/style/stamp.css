@@ -9,10 +9,14 @@
 .stamp-box {
   display: grid;
   grid-template-columns: repeat(2, 2fr);
-  gap: 25px;
+  gap: 15px 20px;
   align-items: center;
 }
 .stamp-box img,
 .stamp-box svg {
   width: 140px;
+}
+
+#stampInfo {
+  margin-top: 26px;
 }
