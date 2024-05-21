@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Layout from "../components/Layout";
 import KakaoMap from "../components/KakaoMap";
 import { stampPositions, toiletPositions, parkPositions, cafePosition } from "../lib/positions.js";
 import { FaRestroom } from "react-icons/fa";
 import { MdForest } from "react-icons/md";
 import { TbLineScan } from "react-icons/tb";
-import { useTheme } from "../context/themeProvider.js";
+import { ColorBlindContext, useTheme } from "../context/themeProvider.js";
 import { useTranslation } from "react-i18next";
 import i18n from "../context/i18n.js";
 import { stampPositionsEng, toiletPositionsEng, parkPositionsEng, cafePositionEng } from "../lib/positionsEng.js";
+import { apiStampInfo } from "../api.js";
+import stamp1 from "../assets/smallMarker.svg";
+import stamp2 from "../assets/smallMarkerGray.svg";
+import stamp3 from "../assets/smallMarkerBlind.svg";
 
 function MapBtn({ onClick, txt, border, Icon, bg }) {
   return (
-    <button className={`w-[100px] py-5 border-2 rounded-md flex flex-col items-center justify-around ${border ? `border-[#119724] font-semibold ${bg && "bg-[#464646]"}` : "border-gray-300"} ${bg ? "bg-[#232325]" : "bg-gray-100"}`} onClick={onClick}>
-      <Icon className=" text-[50px] text-[#119724] mb-2" />
+    <button className={`w-[100px] py-3 border-2 rounded-md flex flex-col items-center justify-around ${border ? `border-[#119724] font-semibold ${bg && "bg-[#464646]"}` : "border-gray-300"} ${bg ? "bg-[#232325]" : "bg-gray-100"}`} onClick={onClick}>
+      <Icon className=" text-[40px] text-[#119724] mb-2" />
       <p>{txt}</p>
     </button>
   );
@@ -26,6 +30,19 @@ export default function MapPage() {
   const [userLocation] = useState(null);
   const [iwContent] = useState("");
   const [markers, setMarkers] = useState("스탬프");
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  const [stampArray, setStampArray] = useState([]);
+  const { isBlind } = useContext(ColorBlindContext);
+
+  // 사용자 스탬프 목록
+  useEffect(() => {
+    if (userData) {
+      const res = apiStampInfo(userData.token, userData.user_id);
+      res.then((result) => {
+        setStampArray(result.data);
+      });
+    }
+  }, []);
 
   // 내 위치 가져오기 함수
   // const getCurrentLocation = () => {
@@ -107,12 +124,24 @@ export default function MapPage() {
         </div>
         {/* 카카오지도 */}
         <KakaoMap userLocation={userLocation} iwContent={iwContent} markers={markers} />
+        {markers === "스탬프" && (
+          <div className="w-[90%] h-6 flex items-center gap-x-4">
+            <span className="h-full flex items-center gap-x-1">
+              <img src={stamp2} alt="마커" className="h-full" />
+              QR 스캔한 곳
+            </span>
+            <span className="h-full flex items-center gap-x-1">
+              <img src={isBlind ? stamp3 : stamp1} alt="마커" className="h-full" />
+              QR스캔하지 않은 곳
+            </span>
+          </div>
+        )}
         {errorMessage && <p>{errorMessage}</p>}
         <div className="flex flex-col w-full">
-          {positions.map((p, index) => {
+          {positions.map((p, idx) => {
             return (
-              <div className="flex items-center mx-8 py-4 gap-x-5 border-b border-gray-400 border-dotted" key={index}>
-                <div className={`bgMarker bgMarker${index}`}></div>
+              <div className="flex items-center mx-8 py-4 gap-x-5 border-b border-gray-400 border-dotted" key={idx}>
+                <div className={`bgMarker bgMarker${idx} ${markers === "스탬프" ? (stampArray[idx]?.is_collected === 1 ? (isBlind ? "bgMarkerGrayBlind" : "bgMarkerGray") : "") : ""}`}></div>
                 <div>
                   <p className="text-xl mb-1 font-medium">{p.title}</p>
                   <p className="leading-5">{p.desc}</p>

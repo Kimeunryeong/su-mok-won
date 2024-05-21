@@ -97,6 +97,15 @@ h3::before {
   background-size: 34px;
   background-repeat: no-repeat;
 }
+
+.bgMarker.bgMarkerGray {
+  background-image: url("../public/markers/gpsMarkerGray.svg");
+}
+
+.bgMarker.bgMarkerGrayBlind {
+  background-image: url("../public/markers/gpsMarkerGrayBlind.svg");
+}
+
 .bgMarker.bgMarker0 {
   background-position: 0 0;
 }
