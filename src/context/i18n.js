@@ -47,7 +47,7 @@ i18n.use(initReactI18next).init({
           iS12: "Alcohol, burners, tents, shade dishes, etc.",
           iS13: "Bicycles, kickboards, inline skates",
           iS14: "Collection of plants and soil",
-          iS15: "Broadcasting equipment such as loudspeakers and microphones",
+          iS15: "Broadcast equipment like mics and speakers",
           iS16: "Entry of pets other than guide dogs",
           iS17: "Other items that may pose a threat",
         },
@@ -118,7 +118,7 @@ i18n.use(initReactI18next).init({
         },
         stampPage: {
           sp0: "1 stamp",
-          sp1: "Biodegradable Bamboo Toothbrush",
+          sp1: "Bamboo Toothbrush",
           sp2: "3 stamps",
           sp3: "Eco-friendly dishwashing soap",
           sp4: "6 stamps",

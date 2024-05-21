@@ -10,6 +10,9 @@ import IsLogin from "../components/IsLogin.js";
 import { apiStampInfo } from "../api.js";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useTranslation } from "react-i18next";
+
+
 
 function StampSkel({ length }) {
   const [ThemeMode] = useTheme();
@@ -23,6 +26,7 @@ function StampSkel({ length }) {
 }
 
 export default function StampPage() {
+  const { t } = useTranslation();
   const [stampArray, setStampArray] = useState([]);
   const [user, setUser] = useState(null);
   const { isBlind } = useContext(ColorBlindContext);
@@ -72,7 +76,7 @@ export default function StampPage() {
             <StampSkel length={6} />
           </>
         )}
-        <div id="stampInfo">보상은 수목원 관리사무실에서 수령할 수 있습니다.</div>
+        <div id="stampInfo">{t(`stampPage.sp6`)}</div>
       </div>
     </Layout>
   );

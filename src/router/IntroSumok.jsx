@@ -52,7 +52,7 @@ export default function IntroSumok() {
             </div>
             <div style={{ background: ThemeMode === "dark" ? "#292929" : "" }}>
               <PiKnifeLight />
-              <p>{t(`introSumok.iS16`)}</p>
+              <p>{t(`introSumok.iS17`)}</p>
             </div>
           </div>
         </div>

@@ -138,21 +138,21 @@ export default function Home() {
             <div className="w-full h-full rounded-lg bg-[#119724] text-white flex justify-center items-center">
               <PiTreeLight className="text-8xl" />
               <div className="w-[50%] ml-3">
-                <span className="text-2xl font-semibold leading-6">{t(`main.menu0`)}</span>
-                <p className="mt-3">{t(`main.menu1`)}</p>
+                <span className="text-2xl font-semibold leading-7">{t(`main.menu0`)}</span>
+                <p className="mt-3 leading-4">{t(`main.menu1`)}</p>
               </div>
             </div>
           </Link>
           <Link to="/indoorinfo" className="w-[48%] mr-auto h-[150px]">
             <div className={`w-full h-full rounded-lg flex flex-col items-center justify-center ${ThemeMode === "dark" ? "bg-[#343434] text-[#b5b5b5]" : "bg-[#ddd] text-[#555]"}`}>
               <PiFlowerTulipLight className="text-7xl" />
-              <span className="text-xl mt-1 font-semibold text-center">{t(`main.menu2`)}</span>
+              <span className="text-xl mt-1 font-semibold text-center leading-6">{t(`main.menu2`)}</span>
             </div>
           </Link>
           <Link to="/indoorinfo2" className="w-[48%] h-[150px]">
             <div className="w-full h-full rounded-lg bg-[#f1a636] text-white flex flex-col items-center justify-center">
               <PiPlantLight className="text-7xl" />
-              <span className="text-xl mt-1 font-semibold text-center">{t(`main.menu3`)}</span>
+              <span className="text-xl mt-1 font-semibold text-center leading-6">{t(`main.menu3`)}</span>
             </div>
           </Link>
         </div>
