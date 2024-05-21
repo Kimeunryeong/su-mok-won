@@ -42,7 +42,7 @@ export default function MapPage() {
         setStampArray(result.data);
       });
     }
-  }, []);
+  }, [userData]);
 
   // 내 위치 가져오기 함수
   // const getCurrentLocation = () => {
