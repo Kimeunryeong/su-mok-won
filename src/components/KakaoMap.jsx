@@ -1,8 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { stampPositions, toiletPositions, parkPositions, cafePosition } from "../lib/positions.js";
+import { apiStampInfo } from "../api.js";
+import { ColorBlindContext } from "../context/themeProvider.js";
 const { kakao } = window;
 
 export default function KakaoMap({ userLocation, iwContent, markers }) {
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  const [stampArray, setStampArray] = useState([]);
+  const { isBlind } = useContext(ColorBlindContext);
+
+  // 사용자 스탬프 목록
+  useEffect(() => {
+    if (userData) {
+      const res = apiStampInfo(userData.token, userData.user_id);
+      res.then((result) => {
+        setStampArray(result.data);
+      });
+    }
+  }, []);
+
   useEffect(() => {
     const mapContainer = document.getElementById("map"), // 지도를 표시할 div
       mapOption = {
@@ -33,8 +49,11 @@ export default function KakaoMap({ userLocation, iwContent, markers }) {
     }
 
     positions.forEach((p, index) => {
-      var imageSrc = "markers/gpsMarker.svg",
-        imageSize = new kakao.maps.Size(24, 41),
+      var imageSrc;
+      // 찍힌 스탬프, 색맹모드에 따라 마커 이미지 설정
+      imageSrc = markers !== "스탬프" ? "markers/gpsMarker.svg" : stampArray[index]?.is_collected === 1 ? (isBlind ? "markers/gpsMarkerGrayBlind.svg" : "markers/gpsMarkerGray.svg") : "markers/gpsMarker.svg";
+
+      var imageSize = new kakao.maps.Size(24, 41),
         imgOptions = {
           spriteSize: new kakao.maps.Size(24, 250), // 스프라이트 이미지의 크기
           spriteOrigin: new kakao.maps.Point(0, index * 41), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
@@ -74,7 +93,7 @@ export default function KakaoMap({ userLocation, iwContent, markers }) {
       map.setCenter(userPosition);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userLocation, markers]);
+  }, [userLocation, markers, stampArray]);
 
   return (
     <div
