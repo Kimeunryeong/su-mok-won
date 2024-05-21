@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <div className="w-full max-w-[400px] h-[60px] relative flex justify-center items-center">
       <div
-        className="absolute top-6 left-5"
+        className="absolute top-6 left-5 z-10"
         onClick={() => navi(-1)}
       >
         <IoIosArrowBack />
