@@ -13,7 +13,7 @@ export default function Weather() {
   const [weatherData, setWeatherData] = useState(null);
   const { t } = useTranslation();
 
-  const apiKey = "6a0d33958b14a3c26fa985a6fecc4763";
+  const apiKey = process.env.REACT_APP_WEATHER_API;
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=35.799208845005865&lon=128.52369024972057&appid=${apiKey}`;
 
   useEffect(() => {
