@@ -4,7 +4,7 @@ export const cafePositionEng = [
   {
     title: "Cafe",
     latlng: new kakao.maps.LatLng(35.80051980506114, 128.52245503345708),
-    desc: "This is a great place to enjoy a cup of tea while gazing at the forest. Various snacks tailored to the tastes of diverse visitors are also available for sale.",
+    desc: "This is a great place to enjoy a cup of tea while gazing at the forest.",
   },
   {
     title: "Rest Area",
