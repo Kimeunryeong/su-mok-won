@@ -146,13 +146,13 @@ export default function Home() {
           <Link to="/indoorinfo" className="w-[48%] mr-auto h-[150px]">
             <div className={`w-full h-full rounded-lg flex flex-col items-center justify-center ${ThemeMode === "dark" ? "bg-[#343434] text-[#b5b5b5]" : "bg-[#ddd] text-[#555]"}`}>
               <PiFlowerTulipLight className="text-7xl" />
-              <span className="text-xl mt-1 font-semibold">{t(`main.menu2`)}</span>
+              <span className="text-xl mt-1 font-semibold text-center">{t(`main.menu2`)}</span>
             </div>
           </Link>
           <Link to="/indoorinfo2" className="w-[48%] h-[150px]">
             <div className="w-full h-full rounded-lg bg-[#f1a636] text-white flex flex-col items-center justify-center">
               <PiPlantLight className="text-7xl" />
-              <span className="text-xl mt-1 font-semibold">{t(`main.menu3`)}</span>
+              <span className="text-xl mt-1 font-semibold text-center">{t(`main.menu3`)}</span>
             </div>
           </Link>
         </div>
