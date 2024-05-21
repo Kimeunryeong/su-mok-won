@@ -138,8 +138,8 @@ export default function Home() {
             <div className="w-full h-full rounded-lg bg-[#119724] text-white flex justify-center items-center">
               <PiTreeLight className="text-8xl" />
               <div className="w-[50%] ml-3">
-                <span className="text-2xl font-semibold">{t(`main.menu0`)}</span>
-                <p>{t(`main.menu1`)}</p>
+                <span className="text-2xl font-semibold leading-6">{t(`main.menu0`)}</span>
+                <p className="mt-3">{t(`main.menu1`)}</p>
               </div>
             </div>
           </Link>
