@@ -7,6 +7,7 @@ import axios from "axios"; // axios 추가
 import IsLogin from "../components/IsLogin";
 import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "../context/themeProvider";
 
 export default function QrPage() {
   const [permissionGranted, setPermissionGranted] = useState(null);
@@ -143,6 +144,7 @@ export default function QrPage() {
   }, [permissionGranted, videoStream]);
 
   const { t } = useTranslation();
+  const [ThemeMode] = useTheme();
 
   return (
     <>
@@ -152,7 +154,7 @@ export default function QrPage() {
           <IoIosArrowBack color="white" />
         </Link>
         <p className="qrText">{t(`etc.qr1`)}</p>
-        {permissionGranted === false && <p className="qrText">{t(`etc.qr2`)}</p>}
+        {permissionGranted === false && <p className="qrText" style={{color: ThemeMode === "dark"? "#000000" : ""}}>{t(`etc.qr2`)}</p>}
         <div
           className="qrZone"
           style={{
