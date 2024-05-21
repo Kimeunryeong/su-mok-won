@@ -115,8 +115,8 @@ export default function Home() {
                 }}
                 className="w-full h-full flex flex-col ml-4 justify-center"
               >
-                <span className="text-2xl" dangerouslySetInnerHTML={{ __html: t(`main.hello0`) }}></span>
-                <span>{t(`main.hello1`)}</span>
+                <span className="text-2xl leading-6" dangerouslySetInnerHTML={{ __html: t(`main.hello0`) }}></span>
+                <span className=" mt-2">{t(`main.hello1`)}</span>
               </div>
               <img className="absolute right-0 top-[22px] w-[30%] -z-10" src={infoMark} alt="안내 이미지" />
             </>
