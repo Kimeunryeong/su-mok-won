@@ -6,15 +6,15 @@ import { useNavigate } from "react-router-dom";
 export default function Header() {
   const navi = useNavigate();
   return (
-    <div className="w-full max-w-[400px] h-[60px] flex justify-center">
+    <div className="w-full max-w-[400px] h-[60px] relative flex justify-center items-center">
       <div
-        className="ml-4 flex justify-start items-center"
+        className="absolute top-6 left-5"
         onClick={() => navi(-1)}
       >
         <IoIosArrowBack />
       </div>
-      <div className="w-full h-full flex items-center justify-center">
-        <img className=" mr-3 h-[50%]" src={headerLogo} alt="logo" />
+      <div className="absolute w-full h-full flex items-center justify-center">
+        <img className="mr-2 h-[50%]" src={headerLogo} alt="logo" />
         <span className="text-2xl text-[#119724] font-semibold ffTitle">
           대구수목원
         </span>
