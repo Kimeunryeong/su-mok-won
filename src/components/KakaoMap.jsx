@@ -1,10 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import { stampPositions, toiletPositions, parkPositions, cafePosition } from "../lib/positions.js";
+import {
+  stampPositions,
+  toiletPositions,
+  parkPositions,
+  cafePosition,
+} from "../lib/positions.js";
 import { apiStampInfo } from "../api.js";
 import { ColorBlindContext } from "../context/themeProvider.js";
 const { kakao } = window;
 
-export default function KakaoMap({ userLocation, iwContent, markers }) {
+export default function KakaoMap({ userLocation, markers }) {
   const userData = JSON.parse(sessionStorage.getItem("userData"));
   const [stampArray, setStampArray] = useState([]);
   const { isBlind } = useContext(ColorBlindContext);
@@ -51,7 +56,14 @@ export default function KakaoMap({ userLocation, iwContent, markers }) {
     positions.forEach((p, index) => {
       var imageSrc;
       // 찍힌 스탬프, 색맹모드에 따라 마커 이미지 설정
-      imageSrc = markers !== "스탬프" ? "markers/gpsMarker.svg" : stampArray[index]?.is_collected === 1 ? (isBlind ? "markers/gpsMarkerGrayBlind.svg" : "markers/gpsMarkerGray.svg") : "markers/gpsMarker.svg";
+      imageSrc =
+        markers !== "스탬프"
+          ? "markers/gpsMarker.svg"
+          : stampArray[index]?.is_collected === 1
+          ? isBlind
+            ? "markers/gpsMarkerGrayBlind.svg"
+            : "markers/gpsMarkerGray.svg"
+          : "markers/gpsMarker.svg";
 
       var imageSize = new kakao.maps.Size(24, 41),
         imgOptions = {
@@ -66,25 +78,29 @@ export default function KakaoMap({ userLocation, iwContent, markers }) {
         image: img,
       });
       marker.setMap(map);
+        // 인포윈도우를 생성합니다
+         var infoWindow = new kakao.maps.InfoWindow({
+          content:p.title,
+          removable: false, // X 버튼으로 인포윈도우를 닫을 수 있도록 설정합니다
+        });
+  
+      kakao.maps.event.addListener(marker, "click", function () {
+        // 마커 위에 인포윈도우를 표시합니다
+        infoWindow.open(map, marker);
+      });
     });
 
     // 사용자의 위치가 있을 경우 마커로 표시
     if (userLocation) {
-      const userPosition = new kakao.maps.LatLng(userLocation.latitude, userLocation.longitude);
+      const userPosition = new kakao.maps.LatLng(
+        userLocation.latitude,
+        userLocation.longitude
+      );
 
       // 사용자 위치를 나타낼 마커 생성
       const marker = new kakao.maps.Marker({
         position: userPosition,
       });
-
-      // 인포윈도우를 생성합니다
-      let infowindow = new kakao.maps.InfoWindow({
-        content: iwContent,
-        removable: false, // X 버튼으로 인포윈도우를 닫을 수 있도록 설정합니다
-      });
-
-      // 인포윈도우를 표시합니다
-      infowindow.open(map, marker);
 
       // 마커를 지도에 표시
       marker.setMap(map);
