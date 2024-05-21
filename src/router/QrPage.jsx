@@ -6,6 +6,7 @@ import "../style/qrpage.css";
 import axios from "axios"; // axios 추가
 import IsLogin from "../components/IsLogin";
 import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next";
 
 export default function QrPage() {
   const [permissionGranted, setPermissionGranted] = useState(null);
@@ -128,12 +129,7 @@ export default function QrPage() {
           canvas.height = videoHeight;
           canvasContext.clearRect(0, 0, canvas.width, canvas.height); // 이전 프레임 지우기
           canvasContext.drawImage(video, 0, 0, videoWidth, videoHeight);
-          const imageData = canvasContext.getImageData(
-            0,
-            0,
-            videoWidth,
-            videoHeight
-          );
+          const imageData = canvasContext.getImageData(0, 0, videoWidth, videoHeight);
           const code = jsQR(imageData.data, imageData.width, imageData.height);
           if (code) {
             setQrData(code.data);
@@ -146,6 +142,8 @@ export default function QrPage() {
     }
   }, [permissionGranted, videoStream]);
 
+  const { t } = useTranslation();
+
   return (
     <>
       <IsLogin updateUser={updateUser} />
@@ -153,10 +151,8 @@ export default function QrPage() {
         <Link to="/home" className="qrArrow">
           <IoIosArrowBack color="white" />
         </Link>
-        <p className="qrText">QR 코드를 촬영해주세요</p>
-        {permissionGranted === false && (
-          <p className="qrText">카메라 액세스 권한이 거부되었습니다.</p>
-        )}
+        <p className="qrText">{t(`etc.qr1`)}</p>
+        {permissionGranted === false && <p className="qrText">{t(`etc.qr2`)}</p>}
         <div
           className="qrZone"
           style={{

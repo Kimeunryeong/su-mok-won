@@ -23,7 +23,7 @@ i18n.use(initReactI18next).init({
           hello1: "Stamp and get a prize!",
           hello2: ", Hello!",
           hello3: "Stamps I collected:",
-          hello4: "asdf4",
+          hello4: "",
           menu0: "Introduction to Daegu Arboretum",
           menu1: "Operating hours, precautions, etc.",
           menu2: "Forest Culture Exhibition Hall",
@@ -66,7 +66,6 @@ i18n.use(initReactI18next).init({
           iI11: "Second floor",
           iI12: "Exhibition Room 2, Special Exhibition Room",
           iI13: "location",
-
         },
         indoor2: {
           iI0: "Wood Culture Experience Center",
@@ -115,7 +114,7 @@ i18n.use(initReactI18next).init({
           m19: "parking lot restroom",
           m20: "Promenade Toilet 1",
           m21: "Promenade Toilet 2",
-          m22: "Promenade Toilet 3"
+          m22: "Promenade Toilet 3",
         },
         stampPage: {
           sp0: "1 stamp",
@@ -124,7 +123,7 @@ i18n.use(initReactI18next).init({
           sp3: "Eco-friendly dishwashing soap",
           sp4: "6 stamps",
           sp5: "Upcycling eco bag",
-          sp6: "sp6",
+          sp6: "The compensation can be received at the management office.",
         },
         myPage: {
           mp0: "'s My page",
@@ -141,6 +140,8 @@ i18n.use(initReactI18next).init({
         etc: {
           h1: "Date",
           h2: "Time",
+          qr1: "Please take a picture of the QR",
+          qr2: "Camera access denied.",
         },
         signUp: {
           s1: "You need to Log in",
@@ -279,6 +280,7 @@ i18n.use(initReactI18next).init({
           sp3: "친환경 설거지 비누",
           sp4: "스탬프 6개",
           sp5: "업사이클링 에코백",
+          sp6: "보상은 수목원 관리사무실에서 수령할 수 있습니다.",
         },
         myPage: {
           mp0: "님의 마이페이지",
@@ -295,6 +297,8 @@ i18n.use(initReactI18next).init({
         etc: {
           h1: "기간",
           h2: "시간",
+          qr1: "QR 코드를 촬영해주세요",
+          qr2: "카메라 액세스 권한이 거부되었습니다.",
         },
         signUp: {
           s1: "로그인이 필요합니다.",
