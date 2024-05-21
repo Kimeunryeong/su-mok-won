@@ -19,7 +19,7 @@ i18n.use(initReactI18next).init({
           guide2: "Scan a QR code and you'll be stamped. Collect stamps and get a variety of giveaways!",
           guide3: "next",
           guide4: "close",
-          hello0: "How to use the app",
+          hello0: "How to<br /> use the app",
           hello1: "Stamp and get a prize!",
           hello2: ", Hello!",
           hello3: "Stamps I collected:",
