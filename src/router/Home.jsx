@@ -193,7 +193,7 @@ export default function Home() {
               }`}
             >
               <PiFlowerTulipLight className="text-7xl" />
-              <span className="text-xl mt-1 font-semibold">
+              <span className="text-xl mt-1 font-semibold text-center">
                 {t(`main.menu2`)}
               </span>
             </div>
@@ -201,7 +201,7 @@ export default function Home() {
           <Link to="/indoorinfo2" className="w-[48%] h-[150px]">
             <div className="w-full h-full rounded-lg bg-[#f1a636] text-white flex flex-col items-center justify-center">
               <PiPlantLight className="text-7xl" />
-              <span className="text-xl mt-1 font-semibold">
+              <span className="text-xl mt-1 font-semibold text-center">
                 {t(`main.menu3`)}
               </span>
             </div>

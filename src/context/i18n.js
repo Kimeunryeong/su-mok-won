@@ -147,7 +147,7 @@ i18n.use(initReactI18next).init({
           mp6: "For those who have trouble distinguishing colors, we change the colors of some elements.",
           mp7: "언어 변경",
           mp8: "언어를 한국어로 변경합니다.<br />This changes the app's language to Korean.",
-          mp9: "Log out",
+          mp9: "Logout",
         },
         etc: {
           h1: "Date",
