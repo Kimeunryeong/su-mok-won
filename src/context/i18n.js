@@ -14,9 +14,9 @@ i18n.use(initReactI18next).init({
           mypage2: "Login",
         },
         main: {
-          guide0: "After registering as a member,<br/> you can turn on the camera by pressing the QR shooting button at the bottom.",
-          guide1: "QR codes are all over the Daegu Arboretum.<br/> Please put your camera lens close to the QR code.",
-          guide2: "Scan a QR code and you'll be stamped.<br/> Collect stamps and get a variety of giveaways!",
+          guide0: "After registering as a member, you can turn on the camera by pressing the QR shooting button at the bottom.",
+          guide1: "QR codes are all over the Daegu Arboretum. Please put your camera lens close to the QR code.",
+          guide2: "Scan a QR code and you'll be stamped. Collect stamps and get a variety of giveaways!",
           guide3: "next",
           guide4: "close",
           hello0: "How to<br /> use the app",
