@@ -17,7 +17,7 @@ export default function KakaoMap({ userLocation, iwContent, markers }) {
         setStampArray(result.data);
       });
     }
-  }, []);
+  }, [userData]);
 
   useEffect(() => {
     const mapContainer = document.getElementById("map"), // 지도를 표시할 div
