@@ -153,7 +153,7 @@ export default function QrPage() {
         <Link to="/home" className="qrArrow">
           <IoIosArrowBack color="white" />
         </Link>
-        <p className="qrText">{t(`etc.qr1`)}</p>
+        <p className="qrText" style={{color: ThemeMode === "dark"? "black" : ""}}>{t(`etc.qr1`)}</p>
         {permissionGranted === false && <p className="qrText" style={{color: ThemeMode === "dark"? "black" : ""}}>{t(`etc.qr2`)}</p>}
         <div
           className="qrZone"
