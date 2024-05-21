@@ -28,7 +28,7 @@ const IsLogin = ({ updateUser }) => {
 
   // 로딩 중인 경우에는 로딩 메시지를 표시합니다.
   if (isLoading) {
-    return <div>로딩 중...</div>;
+    return <></>;
   }
 
   // 사용자 데이터가 있으면 null을 반환합니다.

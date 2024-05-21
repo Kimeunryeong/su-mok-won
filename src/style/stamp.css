@@ -20,3 +20,8 @@
 #stampInfo {
   margin-top: 26px;
 }
+
+/* 스켈레톤 */
+.SkeletonDrop {
+  margin: 1.75rem 0;
+}

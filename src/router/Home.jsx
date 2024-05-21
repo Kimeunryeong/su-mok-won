@@ -6,12 +6,7 @@ import Weather from "../components/Weather.jsx";
 import infoMark from "../assets/qr-scan.png";
 import stampSmall from "../assets/stampApprove.png";
 import { GrFormNext, GrClose } from "react-icons/gr";
-import {
-  PiPlantLight,
-  PiTreeLight,
-  PiFlowerTulipLight,
-  PiQuestionLight,
-} from "react-icons/pi";
+import { PiPlantLight, PiTreeLight, PiFlowerTulipLight, PiQuestionLight } from "react-icons/pi";
 import { useTranslation } from "react-i18next";
 import i18n from "../context/i18n.js";
 import flagusa from "../assets/flagUSA.png";
@@ -21,9 +16,7 @@ import { apiStampInfo } from "../api.js";
 function GuideEle({ zIndex, txt, bg, close }) {
   const { t } = useTranslation();
   return (
-    <div
-      className={`absolute grid font-semibold text-center w-full h-full text-white text-2xl leading-[36px] ${zIndex} ${bg} bg-cover bg-center bg-no-repeat`}
-    >
+    <div className={`absolute grid font-semibold text-center w-full h-full text-white text-2xl leading-[36px] ${zIndex} ${bg} bg-cover bg-center bg-no-repeat`}>
       <div className="self-center justify-self-center">
         <p dangerouslySetInnerHTML={{ __html: txt }} />
         {close ? (
@@ -65,23 +58,10 @@ export default function Home() {
 
   const nextGuide = (guideNav) => {
     if (guideNum === 1) {
-      setGuide(
-        <GuideEle
-          zIndex="z-30"
-          txt={t(`main.guide1`)}
-          bg="bg-[url('./assets/guide2.svg')]"
-        />
-      );
+      setGuide(<GuideEle zIndex="z-30" txt={t(`main.guide1`)} bg="bg-[url('./assets/guide2.svg')]" />);
       setGuideZin("z-30");
     } else if (guideNum === 2) {
-      setGuide(
-        <GuideEle
-          zIndex="z-30"
-          txt={t(`main.guide2`)}
-          bg="bg-[url('./assets/guide3.svg')]"
-          close={true}
-        />
-      );
+      setGuide(<GuideEle zIndex="z-30" txt={t(`main.guide2`)} bg="bg-[url('./assets/guide3.svg')]" close={true} />);
     } else if (guideNum === 3) {
       // setGuide(<GuideEle zIndex="z-30" txt="찍힌 스탬프의 갯수에 따라 다양한 경품을 받을 수 있습니다." bg="bg-[url('./assets/guide4.svg')]" close={true} />);
       if (guideNav) nav("/login");
@@ -94,10 +74,7 @@ export default function Home() {
   return (
     <Layout>
       {showGuide && (
-        <div
-          onClick={() => nextGuide(guideNav)}
-          className={`absolute h-[108vh] -top-[60px] w-screen ${guideZin}`}
-        >
+        <div onClick={() => nextGuide(guideNav)} className={`absolute h-[108vh] -top-[60px] w-screen ${guideZin}`}>
           {guide}
         </div>
       )}
@@ -124,11 +101,7 @@ export default function Home() {
               }
             }}
           >
-            {i18n.language === "en" ? (
-              <img src={flagko} alt="언어변경" />
-            ) : (
-              <img src={flagusa} alt="언어변경" />
-            )}
+            {i18n.language === "en" ? <img src={flagko} alt="언어변경" /> : <img src={flagusa} alt="언어변경" />}
           </div>
         )}
         <div className="w-[300px] h-[100px] relative flex items-center">
@@ -136,22 +109,16 @@ export default function Home() {
             <>
               <div
                 onClick={() => {
-                  setGuide(
-                    <GuideEle txt={t(`main.guide0`)} bg="bg-black/70" />
-                  );
+                  setGuide(<GuideEle txt={t(`main.guide0`)} bg="bg-black/70" />);
                   setGuideNum(1);
                   setShowGuide(true);
                 }}
                 className="w-full h-full flex flex-col ml-4 justify-center"
               >
-                <span className="text-2xl">{t(`main.hello0`)}</span>
+                <span className="text-2xl" dangerouslySetInnerHTML={{ __html: t(`main.hello0`) }}></span>
                 <span>{t(`main.hello1`)}</span>
               </div>
-              <img
-                className="absolute right-0 top-[22px] w-[30%] -z-10"
-                src={infoMark}
-                alt="안내 이미지"
-              />
+              <img className="absolute right-0 top-[22px] w-[30%] -z-10" src={infoMark} alt="안내 이미지" />
             </>
           )}
           {userData && (
@@ -160,15 +127,9 @@ export default function Home() {
                 {userData.user_id} {t(`main.hello2`)}
               </div>
               <span className="text-lg text-[#888]">
-                {t(`main.hello3`)}{" "}
-                {stampArray.filter((s) => s.is_collected === 1).length}{" "}
-                {t(`main.hello4`)}
+                {t(`main.hello3`)} {stampArray.filter((s) => s.is_collected === 1).length} {t(`main.hello4`)}
               </span>
-              <img
-                className="absolute right-0 top-2 w-[28%] -z-10"
-                src={stampSmall}
-                alt="안내 이미지"
-              />
+              <img className="absolute right-0 top-2 w-[28%] -z-10" src={stampSmall} alt="안내 이미지" />
             </div>
           )}
         </div>
@@ -177,33 +138,21 @@ export default function Home() {
             <div className="w-full h-full rounded-lg bg-[#119724] text-white flex justify-center items-center">
               <PiTreeLight className="text-8xl" />
               <div className="w-[50%] ml-3">
-                <span className="text-2xl font-semibold">
-                  {t(`main.menu0`)}
-                </span>
+                <span className="text-2xl font-semibold">{t(`main.menu0`)}</span>
                 <p>{t(`main.menu1`)}</p>
               </div>
             </div>
           </Link>
           <Link to="/indoorinfo" className="w-[48%] mr-auto h-[150px]">
-            <div
-              className={`w-full h-full rounded-lg flex flex-col items-center justify-center ${
-                ThemeMode === "dark"
-                  ? "bg-[#343434] text-[#b5b5b5]"
-                  : "bg-[#ddd] text-[#555]"
-              }`}
-            >
+            <div className={`w-full h-full rounded-lg flex flex-col items-center justify-center ${ThemeMode === "dark" ? "bg-[#343434] text-[#b5b5b5]" : "bg-[#ddd] text-[#555]"}`}>
               <PiFlowerTulipLight className="text-7xl" />
-              <span className="text-xl mt-1 font-semibold">
-                {t(`main.menu2`)}
-              </span>
+              <span className="text-xl mt-1 font-semibold">{t(`main.menu2`)}</span>
             </div>
           </Link>
           <Link to="/indoorinfo2" className="w-[48%] h-[150px]">
             <div className="w-full h-full rounded-lg bg-[#f1a636] text-white flex flex-col items-center justify-center">
               <PiPlantLight className="text-7xl" />
-              <span className="text-xl mt-1 font-semibold">
-                {t(`main.menu3`)}
-              </span>
+              <span className="text-xl mt-1 font-semibold">{t(`main.menu3`)}</span>
             </div>
           </Link>
         </div>
