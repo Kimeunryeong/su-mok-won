@@ -80,20 +80,28 @@ export default function KakaoMap({ userLocation, markers }) {
         image: img,
       });
       marker.setMap(map);
+
+      const content = `
+      <div class="mapMarker">${p.title}
+      </div>
+    `;
+
+
       // 인포윈도우를 생성합니다
-      var infoWindow = new kakao.maps.InfoWindow({
-        content: p.title,
+      var infoWindow = new kakao.maps.CustomOverlay({
+        content: content,
+        position: p.latlng,
         removable: false, // X 버튼으로 인포윈도우를 닫을 수 있도록 설정합니다
       });
 
       kakao.maps.event.addListener(marker, "click", function () {
         // 기존에 열린 윈도우 닫기
-        if (currentInfoWindow) {
-          currentInfoWindow.close();
-        }
+        // if (currentInfoWindow) {
+        //   currentInfoWindow.close();
+        // }
         // 새로운 인포윈도우를 열고 현재 열린 인포윈도우로 설정
-        infoWindow.open(map, marker);
-        currentInfoWindow = infoWindow;
+        infoWindow.setMap(map);
+        // currentInfoWindow = infoWindow;
       });
     });
 
