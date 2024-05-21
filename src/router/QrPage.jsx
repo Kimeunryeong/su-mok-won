@@ -83,7 +83,7 @@ export default function QrPage() {
   };
   const sendDataToServer = async (data, user) => {
     try {
-      const response = await axios.post("http://localhost:8000/users/testQr", {
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/users/testQr`, {
         data,
         user,
         userLocation,
