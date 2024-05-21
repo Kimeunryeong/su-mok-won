@@ -3,12 +3,17 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { useTheme } from "../context/themeProvider";
 import { FaTooth, FaSoap, FaBagShopping } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";
-import stampCircle from "../assets/stampCircle.svg";
 
 function DropdownBtn({ onClick, icon, text1, text2, border }) {
   return (
-    <button onClick={onClick} className={`w-full px-4 py-3 grid grid-cols-[1fr_185px] justify-center items-center gap-x-4 ${border} border-white text-lg`} role="menuitem">
-      <div className="w-[60px] h-[60px] bg-white rounded-full justify-self-end flex justify-center items-center">{icon}</div>
+    <button
+      onClick={onClick}
+      className={`w-full px-4 py-3 grid grid-cols-[1fr_185px] justify-center items-center gap-x-4 ${border} border-white text-lg`}
+      role="menuitem"
+    >
+      <div className="w-[60px] h-[60px] bg-white rounded-full justify-self-end flex justify-center items-center">
+        {icon}
+      </div>
       <div className="text-left">
         <p className="font-semibold">{text1}</p>
         <p>{text2}</p>
@@ -19,7 +24,11 @@ function DropdownBtn({ onClick, icon, text1, text2, border }) {
 
 export default function DropdownMenu({ count }) {
   const { t } = useTranslation();
-  const [selectedMenu, setSelectedMenu] = useState([t(`stampPage.sp0`), t(`stampPage.sp1`), FaTooth]);
+  const [selectedMenu, setSelectedMenu] = useState([
+    t(`stampPage.sp0`),
+    t(`stampPage.sp1`),
+    FaTooth,
+  ]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [ThemeMode] = useTheme();
   const menuRef = useRef(null);
@@ -49,6 +58,7 @@ export default function DropdownMenu({ count }) {
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
 
   return (
@@ -56,7 +66,11 @@ export default function DropdownMenu({ count }) {
       <div>
         <button
           type="button"
-          className={`relative grid grid-cols-[1fr_190px] justify-center items-center rounded-md w-[310px] px-2 py-5 text-lg gap-x-4 ${ThemeMode === "dark" ? "bg-[#2e2e2e] text-white" : "bg-[#E6E6E6] text-inherit"}`}
+          className={`relative grid grid-cols-[1fr_190px] justify-center items-center rounded-md w-[310px] px-2 py-5 text-lg gap-x-4 ${
+            ThemeMode === "dark"
+              ? "bg-[#2e2e2e] text-white"
+              : "bg-[#E6E6E6] text-inherit"
+          }`}
           onClick={() => setMenuOpen(!menuOpen)} // 버튼 클릭 시 메뉴 열기/닫기 토글
         >
           <div className="w-[60px] h-[60px] bg-white rounded-full justify-self-end flex justify-center items-center">
@@ -72,11 +86,57 @@ export default function DropdownMenu({ count }) {
 
       {/* 드롭다운 메뉴 */}
       {menuOpen && (
-        <div className={`origin-top-right absolute right-0 w-full rounded-md shadow-lg mt-1 ${ThemeMode === "dark" ? "bg-[#2e2e2e] text-white" : "bg-[#E6E6E6] text-inherit"}`}>
-          <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-            <DropdownBtn onClick={() => handleMenuClick([t(`stampPage.sp0`), t(`stampPage.sp1`), FaTooth])} text1={t(`stampPage.sp0`)} text2={t(`stampPage.sp1`)} border="border-b" icon={<FaTooth size="35px" color="#666" />} />
-            <DropdownBtn onClick={() => handleMenuClick([t(`stampPage.sp2`), t(`stampPage.sp3`), FaSoap])} text1={t(`stampPage.sp2`)} text2={t(`stampPage.sp3`)} border="border-b" icon={<FaSoap size="35px" color="#666" />} />
-            <DropdownBtn onClick={() => handleMenuClick([t(`stampPage.sp4`), t(`stampPage.sp5`), FaBagShopping])} text1={t(`stampPage.sp4`)} text2={t(`stampPage.sp5`)} icon={<FaBagShopping size="35px" color="#666" />} />
+        <div
+          className={`origin-top-right absolute right-0 w-full rounded-md shadow-lg mt-1 ${
+            ThemeMode === "dark"
+              ? "bg-[#2e2e2e] text-white"
+              : "bg-[#E6E6E6] text-inherit"
+          }`}
+        >
+          <div
+            className="py-1"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="options-menu"
+          >
+            <DropdownBtn
+              onClick={() =>
+                handleMenuClick([
+                  t(`stampPage.sp0`),
+                  t(`stampPage.sp1`),
+                  FaTooth,
+                ])
+              }
+              text1={t(`stampPage.sp0`)}
+              text2={t(`stampPage.sp1`)}
+              border="border-b"
+              icon={<FaTooth size="35px" color="#666" />}
+            />
+            <DropdownBtn
+              onClick={() =>
+                handleMenuClick([
+                  t(`stampPage.sp2`),
+                  t(`stampPage.sp3`),
+                  FaSoap,
+                ])
+              }
+              text1={t(`stampPage.sp2`)}
+              text2={t(`stampPage.sp3`)}
+              border="border-b"
+              icon={<FaSoap size="35px" color="#666" />}
+            />
+            <DropdownBtn
+              onClick={() =>
+                handleMenuClick([
+                  t(`stampPage.sp4`),
+                  t(`stampPage.sp5`),
+                  FaBagShopping,
+                ])
+              }
+              text1={t(`stampPage.sp4`)}
+              text2={t(`stampPage.sp5`)}
+              icon={<FaBagShopping size="35px" color="#666" />}
+            />
           </div>
         </div>
       )}
