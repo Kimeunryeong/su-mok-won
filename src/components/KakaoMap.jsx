@@ -53,6 +53,8 @@ export default function KakaoMap({ userLocation, markers }) {
         break;
     }
 
+    let currentInfoWindow = null;
+
     positions.forEach((p, index) => {
       var imageSrc;
       // 찍힌 스탬프, 색맹모드에 따라 마커 이미지 설정
@@ -78,15 +80,20 @@ export default function KakaoMap({ userLocation, markers }) {
         image: img,
       });
       marker.setMap(map);
-        // 인포윈도우를 생성합니다
-         var infoWindow = new kakao.maps.InfoWindow({
-          content:p.title,
-          removable: false, // X 버튼으로 인포윈도우를 닫을 수 있도록 설정합니다
-        });
-  
+      // 인포윈도우를 생성합니다
+      var infoWindow = new kakao.maps.InfoWindow({
+        content: p.title,
+        removable: false, // X 버튼으로 인포윈도우를 닫을 수 있도록 설정합니다
+      });
+
       kakao.maps.event.addListener(marker, "click", function () {
-        // 마커 위에 인포윈도우를 표시합니다
+        // 기존에 열린 윈도우 닫기
+        if (currentInfoWindow) {
+          currentInfoWindow.close();
+        }
+        // 새로운 인포윈도우를 열고 현재 열린 인포윈도우로 설정
         infoWindow.open(map, marker);
+        currentInfoWindow = infoWindow;
       });
     });
 
