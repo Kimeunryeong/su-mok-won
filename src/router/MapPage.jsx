@@ -99,7 +99,7 @@ export default function MapPage() {
 
   return (
     <Layout>
-      <div className="w-full flex flex-col justify-center items-center pt-8 pb-32 gap-4">
+      <div className="w-full flex flex-col justify-center items-center pt-6 pb-32 gap-4">
         <div className="flex flex-wrap gap-2 justify-center">
           <MapBtn txt={t(`mapPage.m0`)} onClick={() => setMarkers("스탬프")} border={markers === "스탬프"} Icon={TbLineScan} bg={ThemeMode === "dark"} />
           <MapBtn txt={t(`mapPage.m1`)} onClick={() => setMarkers("카페/쉼터")} border={markers === "카페/쉼터"} Icon={MdForest} bg={ThemeMode === "dark"} />
