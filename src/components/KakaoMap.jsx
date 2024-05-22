@@ -63,12 +63,12 @@ export default function KakaoMap({ userLocation, markers }) {
 
       kakao.maps.event.addListener(marker, "click", function () {
         // 기존에 열린 윈도우 닫기
-        // if (currentInfoWindow) {
-        //   currentInfoWindow.close();
-        // }
+        if (currentInfoWindow) {
+          currentInfoWindow.setMap(null);
+        }
         // 새로운 인포윈도우를 열고 현재 열린 인포윈도우로 설정
         infoWindow.setMap(map);
-        // currentInfoWindow = infoWindow;
+        currentInfoWindow = infoWindow;
       });
     });
 
