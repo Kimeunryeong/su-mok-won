@@ -1,7 +1,9 @@
 # 대구 수목원
 
-### 🔗링크
+### 🔗링크 & apk 다운로드링크
 https://daegusumokwon.netlify.app
+https://drive.google.com/file/d/1bFTTd6O6F-2Qoy4izmdPnfhyESWfmj1z/view?usp=sharing
+
 
 ### 🔎소개
 <<대구 수목원 스팟장소를 찾아 QR을 찍고 선물 받자!>>
@@ -24,6 +26,6 @@ https://daegusumokwon.netlify.app
 
 
 ### ✔ 미리보기
-![preview](./public/img/preview/preview1.png)
+![preview](./public/main1.png)
 
-![preview](./public/img/preview/preview2.png)
+![preview](./public/mypage1.png)
