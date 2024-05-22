@@ -46,7 +46,7 @@ export default function TestQr() {
   //   latitude: 35.79479437605564,
   //   longitude: 128.52571073583277,
   // };
-
+  // 35.875362 128.6844245
   return (
     <>
       <div className="flex flex-wrap gap-10 justify-center">

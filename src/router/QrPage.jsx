@@ -84,11 +84,14 @@ export default function QrPage() {
   };
   const sendDataToServer = async (data, user) => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/users/testQr`, {
-        data,
-        user,
-        userLocation,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/users/testQr`,
+        {
+          data,
+          user,
+          userLocation,
+        }
+      );
       console.log("데이터 전송 완료:", response.data);
       const { result, message } = response.data;
       if (result === true) {
@@ -130,7 +133,12 @@ export default function QrPage() {
           canvas.height = videoHeight;
           canvasContext.clearRect(0, 0, canvas.width, canvas.height); // 이전 프레임 지우기
           canvasContext.drawImage(video, 0, 0, videoWidth, videoHeight);
-          const imageData = canvasContext.getImageData(0, 0, videoWidth, videoHeight);
+          const imageData = canvasContext.getImageData(
+            0,
+            0,
+            videoWidth,
+            videoHeight
+          );
           const code = jsQR(imageData.data, imageData.width, imageData.height);
           if (code) {
             setQrData(code.data);
@@ -153,8 +161,20 @@ export default function QrPage() {
         <Link to="/home" className="qrArrow">
           <IoIosArrowBack color="white" />
         </Link>
-        <p className="qrText" style={{color: ThemeMode === "dark"? "black" : ""}}>{t(`etc.qr1`)}</p>
-        {permissionGranted === false && <p className="qrText" style={{color: ThemeMode === "dark"? "black" : ""}}>{t(`etc.qr2`)}</p>}
+        <p
+          className="qrText"
+          style={{ color: ThemeMode === "dark" ? "black" : "" }}
+        >
+          {t(`etc.qr1`)}
+        </p>
+        {permissionGranted === false && (
+          <p
+            className="qrText"
+            style={{ color: ThemeMode === "dark" ? "black" : "" }}
+          >
+            {t(`etc.qr2`)}
+          </p>
+        )}
         <div
           className="qrZone"
           style={{
