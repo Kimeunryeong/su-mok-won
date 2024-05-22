@@ -86,7 +86,6 @@ export default function KakaoMap({ userLocation, markers }) {
       </div>
     `;
 
-
       // 인포윈도우를 생성합니다
       var infoWindow = new kakao.maps.CustomOverlay({
         content: content,
@@ -124,7 +123,7 @@ export default function KakaoMap({ userLocation, markers }) {
       map.setCenter(userPosition);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userLocation, markers, stampArray]);
+  }, [userLocation, markers]);
 
   return (
     <div

@@ -144,10 +144,14 @@ h3::before {
 }
 
 .mapMarker {
-  width: 150px;
+  width: 100%;
   padding: 10px;
   text-align: center;
+  border: 1px solid var(--mainGreen);
   border-radius: 5px;
+  color: white;
+  background-color: var(--mainGreen);
+
 }
 
 
