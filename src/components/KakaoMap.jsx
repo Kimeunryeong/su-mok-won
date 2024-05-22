@@ -1,10 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  stampPositions,
-  toiletPositions,
-  parkPositions,
-  cafePosition,
-} from "../lib/positions.js";
+import { stampPositions, toiletPositions, parkPositions, cafePosition } from "../lib/positions.js";
 const { kakao } = window;
 
 export default function KakaoMap({ userLocation, markers }) {
@@ -110,7 +105,7 @@ export default function KakaoMap({ userLocation, markers }) {
       id="map"
       style={{
         width: "90%",
-        height: "67vh",
+        height: "62vh",
       }}
     ></div>
   );
