@@ -19,6 +19,25 @@ article#myAccount h2 {
   margin-bottom: 50px;
 }
 
+article#myAccount h2#notLoginTit {
+  margin-bottom: 25px;
+  line-height: 31px;
+}
+article#myAccount h2#notLoginTit ~ button {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 500;
+  background: var(--mainGreen);
+  color: white;
+  border-radius: 10px;
+}
+article#myAccount h2#notLoginTit ~ button a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
 article#myAccount #accountInfo {
   padding: 0 10px;
   display: flex;

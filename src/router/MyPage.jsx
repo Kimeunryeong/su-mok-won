@@ -1,9 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { ColorBlindContext, useTheme } from "../context/themeProvider.js";
 import "../style/mypage.css";
-import IsLogin from "../components/IsLogin.js";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
@@ -27,12 +26,16 @@ function SettingBtn({ txt1, txt2, onClick, ThemeMode, left, onOff }) {
 
 export default function MyPage() {
   const { t } = useTranslation();
-  const token = JSON.parse(sessionStorage.getItem("userData"));
+  let token = JSON.parse(sessionStorage.getItem("userData"));
   const navigate = useNavigate();
   const [ThemeMode, toggleTheme] = useTheme();
   const { isBlind, setIsBlind } = useContext(ColorBlindContext);
+  const [user, setUser] = useState(null);
 
-  const [user, setUser] = useState(null); // 사용자 정보를 상태로 관리
+  useEffect(() => {
+    setUser(JSON.parse(sessionStorage.getItem("userData")));
+  }, [navigate]);
+
   const onClick = () => {
     sessionStorage.removeItem("userData");
     Swal.fire({
@@ -44,10 +47,7 @@ export default function MyPage() {
     });
     navigate("/home");
   };
-  // IsLogin 컴포넌트에서 전달한 사용자 정보를 받아 상태를 업데이트하는 함수
-  const updateUser = (userData) => {
-    setUser(userData);
-  };
+
   const { mutate } = useMutation(apiPasswordEdit, {
     onSuccess: (data) => {
       if (data.result === true) {
@@ -81,18 +81,13 @@ export default function MyPage() {
     };
     mutate(modifiedData);
   };
-  // const data = {
-  //   text: "찍힘",
-  //   user: user,
-  // };
+
   return (
     <Layout>
       <section id="myPage">
         <article id="myAccount">
-          {/* IsLogin 컴포넌트에 updateUser 함수를 props로 전달하여 사용자 정보 업데이트 */}
-          <IsLogin updateUser={updateUser} />
           {/* 사용자 정보를 이용하여 마이페이지 렌더링 */}
-          {user && (
+          {user ? (
             <>
               <h2>{user?.user_id + t(`myPage.mp0`)}</h2>
               <div id="myPW">{t(`myPage.mp1`)}</div>
@@ -100,6 +95,13 @@ export default function MyPage() {
                 <input {...register("passwordEdit")} type="password" placeholder="******" className={`${ThemeMode === "dark" ? "bg-[#111]" : "bg-inherit"}`} />
                 <button className={`editBtn ${ThemeMode === "dark" ? "darkEditBtn" : ""}`}>{t(`myPage.mp2`)}</button>
               </form>
+            </>
+          ) : (
+            <>
+              <h2 id="notLoginTit">회원 가입하고 다양한 경품 받아가세요!</h2>
+              <button>
+                <Link to="/signup">1분만에 가입하기</Link>
+              </button>
             </>
           )}
         </article>
@@ -119,9 +121,11 @@ export default function MyPage() {
           left={i18n.language === "en"}
           onOff={i18n.language === "en"}
         />
-        <p id="logout" onClick={onClick}>
-          {t(`myPage.mp9`)}
-        </p>
+        {user && (
+          <p id="logout" onClick={onClick}>
+            {t(`myPage.mp9`)}
+          </p>
+        )}
       </section>
     </Layout>
   );

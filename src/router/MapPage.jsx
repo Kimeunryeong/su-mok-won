@@ -42,7 +42,7 @@ export default function MapPage() {
         setStampArray(result.data);
       });
     }
-  }, [userData]);
+  }, []);
 
   // 내 위치 가져오기 함수
   // const getCurrentLocation = () => {
@@ -124,15 +124,15 @@ export default function MapPage() {
         </div>
         {/* 카카오지도 */}
         <KakaoMap userLocation={userLocation} iwContent={iwContent} markers={markers} />
-        {markers === "스탬프" && (
-          <div className="w-[90%] h-6 flex items-center gap-x-4">
+        {markers === "스탬프" && userData && (
+          <div className="w-[90%] min-h-6 flex flex-wrap items-center gap-x-4 gap-y-3">
             <span className="h-full flex items-center gap-x-1">
-              <img src={stamp2} alt="마커" className="h-full" />
-              QR 스캔한 곳
+              <img src={stamp2} alt="마커" className="h-6" />
+              {t(`mapPage.m3`)}
             </span>
             <span className="h-full flex items-center gap-x-1">
-              <img src={isBlind ? stamp3 : stamp1} alt="마커" className="h-full" />
-              QR스캔하지 않은 곳
+              <img src={isBlind ? stamp3 : stamp1} alt="마커" className="h-6" />
+              {t(`mapPage.m4`)}
             </span>
           </div>
         )}

@@ -11,7 +11,6 @@ export default function MenuBar() {
   const { t } = useTranslation();
   const [ThemeMode] = useTheme();
   const { pathname } = useLocation();
-  const userData = JSON.parse(sessionStorage.getItem("userData"));
   const qrRef = useRef();
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,7 +37,7 @@ export default function MenuBar() {
           <Icon text={t(`menu.stamp`)} icon="stamp" size="26px" green={pathname === "/stamp" ? true : false} />
         </Link>
         <Link to="/mypage" className="w-[60px]">
-          <Icon text={userData ? t(`menu.mypage`) : t(`menu.mypage2`)} icon="user" size="26px" green={/^(\/mypage|\/login|\/signup)$/.test(pathname) ? true : false} />
+          <Icon text={t(`menu.mypage`)} icon="user" size="26px" green={pathname === "/mypage" ? true : false} />
         </Link>
       </nav>
     </>
