@@ -37,9 +37,15 @@ export default function TestQr() {
   const data5 = {
     no: 18,
     name: "전통정원",
-    latitude: 35.79479437605564,
-    longitude: 128.52571073583277,
+    latitude: 35.87616436182618,
+    longitude: 128.68105931097259,
   };
+  // const data5 = {
+  //   no: 18,
+  //   name: "전통정원",
+  //   latitude: 35.79479437605564,
+  //   longitude: 128.52571073583277,
+  // };
 
   return (
     <>
