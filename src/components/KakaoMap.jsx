@@ -74,18 +74,26 @@ export default function KakaoMap({ userLocation, markers }) {
 
     // 사용자의 위치가 있을 경우 마커로 표시
     if (userLocation) {
-      const userPosition = new kakao.maps.LatLng(userLocation.latitude, userLocation.longitude);
+      // const userPosition = new kakao.maps.LatLng(userLocation.latitude, userLocation.longitude);
+      const userPosition = new kakao.maps.LatLng(35.799, 128.5221);
 
       // 사용자 위치를 나타낼 마커 생성
+
+      var imageSrc = "markers/myMarker.svg",
+        imageSize = new kakao.maps.Size(24, 41),
+        imgOptions = { offset: new kakao.maps.Point(11, 41) },
+        img = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions);
+
       const marker = new kakao.maps.Marker({
         position: userPosition,
+        image: img,
       });
 
       // 마커를 지도에 표시
       marker.setMap(map);
 
       // 지도 중심을 사용자의 위치로 이동
-      map.setCenter(userPosition);
+      // map.setCenter(userPosition);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLocation, markers]);
