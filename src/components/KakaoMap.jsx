@@ -6,7 +6,7 @@ export default function KakaoMap({ userLocation, markers }) {
   useEffect(() => {
     const mapContainer = document.getElementById("map"), // 지도를 표시할 div
       mapOption = {
-        center: new kakao.maps.LatLng(35.79843161141508, 128.5228), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(35.7986, 128.5228), // 지도의 중심좌표
         level: 4, // 지도의 확대 레벨
       };
 
@@ -95,7 +95,7 @@ export default function KakaoMap({ userLocation, markers }) {
       id="map"
       style={{
         width: "90%",
-        height: "50vh",
+        height: "67vh",
       }}
     ></div>
   );
