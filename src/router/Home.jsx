@@ -58,7 +58,7 @@ export default function Home() {
       setGuide(<GuideEle zIndex="z-30" txt={t(`main.guide1`)} bg="bg-[url('./assets/guide2.svg')]" />);
       setGuideZin("z-30");
     } else if (guideNum === 2) {
-      setGuide(<GuideEle zIndex="z-30" txt={t(`main.guide2`)} bg="bg-[url('./assets/guide3.svg')]" close={true} />);
+      setGuide(<GuideEle zIndex="z-30" txt={t(`main.guide2`)} bg="bg-[url('./assets/guide4.png')]" close={true} />);
     } else if (guideNum === 3) {
       if (guideNav) nav("/signup");
       setGuideZin("z-10");
@@ -110,7 +110,7 @@ export default function Home() {
                 {userData.user_id} {t(`main.hello2`)}
               </div>
               <span className="text-lg text-[#888]">
-                {t(`main.hello3`)} {stampArray.filter((s) => s.is_collected === 1).length} {t(`main.hello4`)}
+                {t(`main.hello3`)} {stampArray?.filter((s) => s.is_collected === 1).length} {t(`main.hello4`)}
               </span>
               <img className="absolute right-0 top-2 w-[28%] -z-10" src={stampSmall} alt="안내 이미지" />
             </div>

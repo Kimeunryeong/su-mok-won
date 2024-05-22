@@ -9,6 +9,7 @@ import { useTheme } from "../context/themeProvider.js";
 import { useTranslation } from "react-i18next";
 import i18n from "../context/i18n.js";
 import { stampPositionsEng, toiletPositionsEng, parkPositionsEng, cafePositionEng } from "../lib/positionsEng.js";
+import Mymarker from "../assets/myMarker.svg";
 
 function MapBtn({ onClick, txt, border, Icon, bg }) {
   return (
@@ -105,7 +106,14 @@ export default function MapPage() {
         </div>
         {/* 카카오지도 */}
         <KakaoMap userLocation={userLocation} iwContent={iwContent} markers={markers} />
-        {errorMessage && <p>{errorMessage}</p>}
+        {errorMessage ? (
+          <p>{errorMessage}</p>
+        ) : (
+          <div className=" w-full px-8 flex items-center -mt-2">
+            <img src={Mymarker} alt="마커" className="w-[20px] mr-2" />
+            <p className="text-lg">내 위치</p>
+          </div>
+        )}
         <div className="flex flex-col w-full">
           {positions.map((p, idx) => {
             return (
