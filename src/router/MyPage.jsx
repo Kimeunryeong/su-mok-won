@@ -12,13 +12,23 @@ import i18n from "../context/i18n.js";
 
 function SettingBtn({ txt1, txt2, onClick, ThemeMode, left, onOff }) {
   return (
-    <div className={`settingBtn ${ThemeMode === "dark" ? "DarkSettingBtn" : ""}`} onClick={onClick}>
+    <div
+      className={`settingBtn ${ThemeMode === "dark" ? "DarkSettingBtn" : ""}`}
+      onClick={onClick}
+    >
       <div className="btnTxt">
         <p>{txt1}</p>
         <p dangerouslySetInnerHTML={{ __html: txt2 }}></p>
       </div>
-      <div className={`togBtn ${ThemeMode === "dark" ? "darkBtn" : ""} ${onOff ? "onBtn" : ""}`}>
-        <div className={`togCircle ${ThemeMode === "dark" ? "darkTogCircle" : ""}`} style={{ left: left ? "22px" : "0" }}></div>
+      <div
+        className={`togBtn ${ThemeMode === "dark" ? "darkBtn" : ""} ${
+          onOff ? "onBtn" : ""
+        }`}
+      >
+        <div
+          className={`togCircle ${ThemeMode === "dark" ? "darkTogCircle" : ""}`}
+          style={{ left: left ? "22px" : "0" }}
+        ></div>
       </div>
     </div>
   );
@@ -91,9 +101,26 @@ export default function MyPage() {
             <>
               <h2>{user?.user_id + t(`myPage.mp0`)}</h2>
               <div id="myPW">{t(`myPage.mp1`)}</div>
-              <form id="accountInfo" onSubmit={handleSubmit(onValid)} className="flex items-end">
-                <input {...register("passwordEdit")} type="password" placeholder="******" className={`${ThemeMode === "dark" ? "bg-[#111]" : "bg-inherit"}`} />
-                <button className={`editBtn ${ThemeMode === "dark" ? "darkEditBtn" : ""}`}>{t(`myPage.mp2`)}</button>
+              <form
+                id="accountInfo"
+                onSubmit={handleSubmit(onValid)}
+                className="flex items-end"
+              >
+                <input
+                  {...register("passwordEdit")}
+                  type="password"
+                  placeholder="******"
+                  className={`${
+                    ThemeMode === "dark" ? "bg-[#111]" : "bg-inherit"
+                  }`}
+                />
+                <button
+                  className={`editBtn ${
+                    ThemeMode === "dark" ? "darkEditBtn" : ""
+                  }`}
+                >
+                  {t(`myPage.mp2`)}
+                </button>
               </form>
             </>
           ) : (
@@ -105,8 +132,22 @@ export default function MyPage() {
             </>
           )}
         </article>
-        <SettingBtn txt1={t(`myPage.mp3`)} txt2={t(`myPage.mp4`)} onClick={() => toggleTheme()} ThemeMode={ThemeMode} left={ThemeMode === "dark"} onOff={ThemeMode === "dark"} />
-        <SettingBtn txt1={t(`myPage.mp5`)} txt2={t(`myPage.mp6`)} onClick={() => setIsBlind(!isBlind)} ThemeMode={ThemeMode} left={isBlind} onOff={isBlind} />
+        <SettingBtn
+          txt1={t(`myPage.mp3`)}
+          txt2={t(`myPage.mp4`)}
+          onClick={() => toggleTheme()}
+          ThemeMode={ThemeMode}
+          left={ThemeMode === "dark"}
+          onOff={ThemeMode === "dark"}
+        />
+        <SettingBtn
+          txt1={t(`myPage.mp5`)}
+          txt2={t(`myPage.mp6`)}
+          onClick={() => setIsBlind(!isBlind)}
+          ThemeMode={ThemeMode}
+          left={isBlind}
+          onOff={isBlind}
+        />
         <SettingBtn
           txt1={t(`myPage.mp7`)}
           txt2={t(`myPage.mp8`)}
