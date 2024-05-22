@@ -60,7 +60,7 @@ export default function Home() {
     } else if (guideNum === 2) {
       setGuide(<GuideEle zIndex="z-30" txt={t(`main.guide2`)} bg="bg-[url('./assets/guide3.svg')]" close={true} />);
     } else if (guideNum === 3) {
-      if (guideNav) nav("/login");
+      if (guideNav) nav("/signup");
       setGuideZin("z-10");
       setShowGuide(false);
       return;
