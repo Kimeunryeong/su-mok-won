@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const IsLogin = ({ updateUser }) => {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true); // 로딩 상태를 관리합니다.
+  const [, setIsLoading] = useState(true); // 로딩 상태를 관리합니다.
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -25,11 +25,6 @@ const IsLogin = ({ updateUser }) => {
     setIsLoading(false); // 로딩 상태를 false로 업데이트합니다.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate]); // useEffect 의존성 배열에 navigate와 updateUser 추가
-
-  // 로딩 중인 경우에는 로딩 메시지를 표시합니다.
-  if (isLoading) {
-    return <></>;
-  }
 
   // 사용자 데이터가 있으면 null을 반환합니다.
   return null;

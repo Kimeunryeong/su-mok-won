@@ -143,14 +143,6 @@ h3::before {
   text-align: end;
 }
 
-.mapMarker {
-  width: 150px;
-  padding: 10px;
-  text-align: center;
-  border-radius: 5px;
-}
-
-
 @keyframes swal-show {
   0% {
     transform: scale(1.05);
