@@ -1,5 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { stampPositions, toiletPositions, parkPositions, cafePosition } from "../lib/positions.js";
+import {
+  stampPositions,
+  toiletPositions,
+  parkPositions,
+  cafePosition,
+} from "../lib/positions.js";
 import { apiStampInfo } from "../api.js";
 import { ColorBlindContext } from "../context/themeProvider.js";
 const { kakao } = window;
@@ -53,7 +58,14 @@ export default function KakaoMap({ userLocation, markers }) {
     positions.forEach((p, index) => {
       var imageSrc;
       // 찍힌 스탬프, 색맹모드에 따라 마커 이미지 설정
-      imageSrc = markers !== "스탬프" ? "markers/gpsMarker.svg" : stampArray[index]?.is_collected === 1 ? (isBlind ? "markers/gpsMarkerGrayBlind.svg" : "markers/gpsMarkerGray.svg") : "markers/gpsMarker.svg";
+      imageSrc =
+        markers !== "스탬프"
+          ? "markers/gpsMarker.svg"
+          : stampArray[index]?.is_collected === 1
+          ? isBlind
+            ? "markers/gpsMarkerGrayBlind.svg"
+            : "markers/gpsMarkerGray.svg"
+          : "markers/gpsMarker.svg";
 
       var imageSize = new kakao.maps.Size(24, 41),
         imgOptions = {
@@ -69,9 +81,8 @@ export default function KakaoMap({ userLocation, markers }) {
       });
       marker.setMap(map);
 
-      const content = `
-      <div class="mapMarker">${p.title}
-      </div>
+      const content = `      
+      <div class="mapMarker">${p.title}</div>
     `;
 
       // 인포윈도우를 생성합니다
@@ -94,7 +105,10 @@ export default function KakaoMap({ userLocation, markers }) {
 
     // 사용자의 위치가 있을 경우 마커로 표시
     if (userLocation) {
-      const userPosition = new kakao.maps.LatLng(userLocation.latitude, userLocation.longitude);
+      const userPosition = new kakao.maps.LatLng(
+        userLocation.latitude,
+        userLocation.longitude
+      );
 
       // 사용자 위치를 나타낼 마커 생성
       const marker = new kakao.maps.Marker({
