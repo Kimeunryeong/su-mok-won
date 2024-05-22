@@ -142,8 +142,8 @@ h3::before {
   width: 100%;
   text-align: end;
 }
-
 .mapMarker {
+  margin-top:-75px;
   width: 100%;
   padding: 10px;
   text-align: center;
@@ -151,9 +151,7 @@ h3::before {
   border-radius: 5px;
   color: white;
   background-color: var(--mainGreen);
-
 }
-
 
 @keyframes swal-show {
   0% {
