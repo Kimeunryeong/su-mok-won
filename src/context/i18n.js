@@ -113,7 +113,7 @@ i18n.use(initReactI18next).init({
           mp3: "Dark Mode",
           mp4: "Change the app screen dark.",
           mp5: "Colorblind mode",
-          mp6: "For those who have trouble distinguishing colors, we change the colors of some elements.",
+          mp6: "This changes the colors of some elements for those who have trouble distinguishing colors.",
           mp7: "언어 변경",
           mp8: "언어를 한국어로 변경합니다.<br />This changes the app's language to Korean.",
           mp9: "Logout",
