@@ -2,12 +2,15 @@
 
 ### 🔗링크 & apk 다운로드링크
 https://daegusumokwon.netlify.app
+
 https://drive.google.com/file/d/1bFTTd6O6F-2Qoy4izmdPnfhyESWfmj1z/view?usp=sharing
 
 
 ### 🔎소개
 <<대구 수목원 스팟장소를 찾아 QR을 찍고 선물 받자!>>
+
 자연과 환경의 소중함을 일깨우기 위해 대구 수목원 사이트를 하이브리드 앱으로 제작하였습니다.
+
 사용자들이 대구 수목원의 다양한 스팟을 쉽게 찾아다니며 QR 코드를 스캔하고 선물을 받을 수 있도록 도와줍니다.
 
 ### 📅제작 기간
