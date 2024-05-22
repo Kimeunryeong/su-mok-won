@@ -5,37 +5,37 @@ export default function TestQr() {
 
   const data = {
     // 각 큐알에 대한 위도,경도
-    no: 13,
+    no: 1,
     name: "침엽수원",
     latitude: 35.8013,
     longitude: 128.52097,
   };
   const data1 = {
-    no: 14,
+    no: 2,
     name: "습지원",
     latitude: 35.80052370351272,
     longitude: 128.5201012191372,
   };
   const data2 = {
-    no: 15,
+    no: 3,
     name: "무궁화원",
     latitude: 35.799712542069514,
     longitude: 128.52292532334738,
   };
   const data3 = {
-    no: 16,
+    no: 4,
     name: "염료 식물원",
     latitude: 35.797142822107794,
     longitude: 128.5259099978123,
   };
   const data4 = {
-    no: 17,
+    no: 5,
     name: "양치 식물원",
     latitude: 35.795706624856,
     longitude: 128.52537693278592,
   };
   const data5 = {
-    no: 18,
+    no: 6,
     name: "전통정원",
     latitude: 35.87616436182618,
     longitude: 128.68105931097259,
