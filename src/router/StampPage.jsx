@@ -12,8 +12,6 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useTranslation } from "react-i18next";
 
-
-
 function StampSkel({ length }) {
   const [ThemeMode] = useTheme();
   return (

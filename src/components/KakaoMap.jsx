@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { stampPositions, toiletPositions, parkPositions, cafePosition } from "../lib/positions.js";
 import { apiStampInfo } from "../api.js";
 import { ColorBlindContext } from "../context/themeProvider.js";
+import { useNavigate } from "react-router-dom";
 const { kakao } = window;
 
 export default function KakaoMap({ userLocation, markers }) {
