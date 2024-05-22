@@ -134,7 +134,7 @@ h3::before {
   width: 100%;
   text-align: end;
 }
-.mapMarker {
+.mapMarker, .userLocation {
   margin-top: -75px;
   width: 100%;
   padding: 10px;
@@ -142,6 +142,13 @@ h3::before {
   border-radius: 5px;
   color: white;
   background-color: var(--mainGreen);
+  font-weight: 600;
+}
+.userLocation {
+  margin-top: -80px;
+  background-color: white;
+  color: var(--mainGreen);
+  border: 2px solid var(--mainGreen);
 }
 
 @keyframes swal-show {

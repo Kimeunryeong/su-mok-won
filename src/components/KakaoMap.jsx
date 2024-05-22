@@ -89,8 +89,21 @@ export default function KakaoMap({ userLocation, markers }) {
         image: img,
       });
 
+      const iwContent = '<div class="userLocation";>내 위치</div>';
+      const userCustomOverlay = new kakao.maps.CustomOverlay({
+        content: iwContent,
+        position: userPosition,
+        xAnchor: 0.5,
+        yAnchor: 1,
+      });
+    
+      userCustomOverlay.setMap(map);
+    
+
       // 마커를 지도에 표시
       marker.setMap(map);
+    
+
 
       // 지도 중심을 사용자의 위치로 이동
       // map.setCenter(userPosition);
