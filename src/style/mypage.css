@@ -64,12 +64,36 @@ article#myAccount #accountInfo .editBtn {
   font-size: 18px;
 }
 
-article#myAccount ~ #logout {
+article#myAccount ~ #logout,
+article#myAccount ~ #credit {
   text-align: center;
   margin-top: 25px;
   color: gray;
 }
 
+#credit ~ #creditTxt {
+  text-align: center;
+  margin: 10px 30px;
+  line-height: 19px;
+}
+
+#credit ~ #creditTxt ul {
+  display: flex;
+  justify-content: center;
+  gap: 5px 15px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+#credit ~ #creditTxt a {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: fit-content;
+  margin: 0 auto;
+  min-height: 65px;
+}
 .settingBtn:last-of-type {
   margin-bottom: 0;
 }

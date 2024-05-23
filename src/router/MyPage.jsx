@@ -9,26 +9,17 @@ import { useMutation } from "react-query";
 import { apiPasswordEdit } from "../api.js";
 import { useTranslation } from "react-i18next";
 import i18n from "../context/i18n.js";
+import { PiCloudSunLight, PiGithubLogoLight, PiImageLight } from "react-icons/pi";
 
 function SettingBtn({ txt1, txt2, onClick, ThemeMode, left, onOff }) {
   return (
-    <div
-      className={`settingBtn ${ThemeMode === "dark" ? "DarkSettingBtn" : ""}`}
-      onClick={onClick}
-    >
+    <div className={`settingBtn ${ThemeMode === "dark" ? "DarkSettingBtn" : ""}`} onClick={onClick}>
       <div className="btnTxt">
         <p>{txt1}</p>
         <p dangerouslySetInnerHTML={{ __html: txt2 }}></p>
       </div>
-      <div
-        className={`togBtn ${ThemeMode === "dark" ? "darkBtn" : ""} ${
-          onOff ? "onBtn" : ""
-        }`}
-      >
-        <div
-          className={`togCircle ${ThemeMode === "dark" ? "darkTogCircle" : ""}`}
-          style={{ left: left ? "22px" : "0" }}
-        ></div>
+      <div className={`togBtn ${ThemeMode === "dark" ? "darkBtn" : ""} ${onOff ? "onBtn" : ""}`}>
+        <div className={`togCircle ${ThemeMode === "dark" ? "darkTogCircle" : ""}`} style={{ left: left ? "22px" : "0" }}></div>
       </div>
     </div>
   );
@@ -41,6 +32,7 @@ export default function MyPage() {
   const [ThemeMode, toggleTheme] = useTheme();
   const { isBlind, setIsBlind } = useContext(ColorBlindContext);
   const [user, setUser] = useState(null);
+  const [showCredit, setShowCredit] = useState(false);
 
   useEffect(() => {
     setUser(JSON.parse(sessionStorage.getItem("userData")));
@@ -101,26 +93,9 @@ export default function MyPage() {
             <>
               <h2>{user?.user_id + t(`myPage.mp0`)}</h2>
               <div id="myPW">{t(`myPage.mp1`)}</div>
-              <form
-                id="accountInfo"
-                onSubmit={handleSubmit(onValid)}
-                className="flex items-end"
-              >
-                <input
-                  {...register("passwordEdit")}
-                  type="password"
-                  placeholder="******"
-                  className={`${
-                    ThemeMode === "dark" ? "bg-[#111]" : "bg-inherit"
-                  }`}
-                />
-                <button
-                  className={`editBtn ${
-                    ThemeMode === "dark" ? "darkEditBtn" : ""
-                  }`}
-                >
-                  {t(`myPage.mp2`)}
-                </button>
+              <form id="accountInfo" onSubmit={handleSubmit(onValid)} className="flex items-end">
+                <input {...register("passwordEdit")} type="password" placeholder="******" className={`${ThemeMode === "dark" ? "bg-[#111]" : "bg-inherit"}`} />
+                <button className={`editBtn ${ThemeMode === "dark" ? "darkEditBtn" : ""}`}>{t(`myPage.mp2`)}</button>
               </form>
             </>
           ) : (
@@ -132,22 +107,8 @@ export default function MyPage() {
             </>
           )}
         </article>
-        <SettingBtn
-          txt1={t(`myPage.mp3`)}
-          txt2={t(`myPage.mp4`)}
-          onClick={() => toggleTheme()}
-          ThemeMode={ThemeMode}
-          left={ThemeMode === "dark"}
-          onOff={ThemeMode === "dark"}
-        />
-        <SettingBtn
-          txt1={t(`myPage.mp5`)}
-          txt2={t(`myPage.mp6`)}
-          onClick={() => setIsBlind(!isBlind)}
-          ThemeMode={ThemeMode}
-          left={isBlind}
-          onOff={isBlind}
-        />
+        <SettingBtn txt1={t(`myPage.mp3`)} txt2={t(`myPage.mp4`)} onClick={() => toggleTheme()} ThemeMode={ThemeMode} left={ThemeMode === "dark"} onOff={ThemeMode === "dark"} />
+        <SettingBtn txt1={t(`myPage.mp5`)} txt2={t(`myPage.mp6`)} onClick={() => setIsBlind(!isBlind)} ThemeMode={ThemeMode} left={isBlind} onOff={isBlind} />
         <SettingBtn
           txt1={t(`myPage.mp7`)}
           txt2={t(`myPage.mp8`)}
@@ -166,6 +127,38 @@ export default function MyPage() {
           <p id="logout" onClick={onClick}>
             {t(`myPage.mp9`)}
           </p>
+        )}
+        <div id="credit" onClick={() => setShowCredit(!showCredit)}>
+          크레딧
+        </div>
+        {showCredit && (
+          <div id="creditTxt">
+            <span>※ 실습용으로 제작된 사이트(앱)이며, 실제로 사용할 수 없습니다.</span>
+            <ul>
+              <li>
+                <Link to="https://github.com/Kimeunryeong/su-mok-won" target="_blank" rel="noreferrer noopener">
+                  <PiGithubLogoLight size="30px" />
+                  깃허브
+                </Link>
+              </li>
+              <li>
+                <Link to="https://www.flaticon.com/free-icon/qr-scan_4187294?related_id=4187264&origin=search" target="_blank" rel="noreferrer noopener">
+                  <PiImageLight size="30px" />홈 아이콘1
+                </Link>
+              </li>
+              <li>
+                <Link to="https://www.flaticon.com/free-icon/stamp_5442020?term=stamp&page=1&position=12&origin=search&related_id=5442020" target="_blank" rel="noreferrer noopener">
+                  <PiImageLight size="30px" />홈 아이콘2
+                </Link>
+              </li>
+              <li>
+                <Link to="https://www.freepik.com/free-vector/weather-icons-collection_972339.htm" target="_blank" rel="noreferrer noopener">
+                  <PiCloudSunLight size="30px" />
+                  날씨 아이콘
+                </Link>
+              </li>
+            </ul>
+          </div>
         )}
       </section>
     </Layout>
