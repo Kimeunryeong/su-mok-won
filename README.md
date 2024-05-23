@@ -1,8 +1,9 @@
 # 대구 수목원
 
-### 🔗링크 & apk 다운로드링크
+### 🔗웹 페이지 링크 
 https://daegusumokwon.netlify.app
 
+### 🔗apk 다운로드링크
 https://drive.google.com/file/d/1bFTTd6O6F-2Qoy4izmdPnfhyESWfmj1z/view?usp=sharing
 
 
@@ -19,16 +20,16 @@ https://drive.google.com/file/d/1bFTTd6O6F-2Qoy4izmdPnfhyESWfmj1z/view?usp=shari
 ### 🗂개발 환경
 - React
 - Android Studio Iguana
-- db는 뭘로했어요
+- MySQL
 
 ### 🎈주요 기능
-- 색각 이상자들을 위한 색맹모드지원
-- 눈의 피로를 줄여주는 다크 모드 제공
+- 색각 이상자들을 위한 색맹 모드
+- 눈의 피로를 줄여주는 다크 모드
 - GPS 기반 서비스로 현재 위치를 파악하여 스팟 장소를 쉽게 찾기
 - 앱 시작 시 스플래시 화면 제공
 
 
 ### ✔ 미리보기
-![preview](./public/main1.png)
+![preview](./public/main1.PNG)
 
-![preview](./public/mypage1.png)
+![preview](./public/mypage1.PNG)
