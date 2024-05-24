@@ -9,7 +9,7 @@ import { useMutation } from "react-query";
 import { apiPasswordEdit } from "../api.js";
 import { useTranslation } from "react-i18next";
 import i18n from "../context/i18n.js";
-import { PiCloudSunLight, PiGithubLogoLight, PiImageLight, PiInfoLight, PiPlantLight } from "react-icons/pi";
+import { PiCloudSunFill, PiGithubLogoFill, PiImageFill, PiInfoFill, PiPlantFill } from "react-icons/pi";
 
 function SettingBtn({ txt1, txt2, onClick, ThemeMode, left, onOff }) {
   return (
@@ -137,35 +137,35 @@ export default function MyPage() {
             <ul>
               <li>
                 <Link to="https://github.com/Kimeunryeong/su-mok-won" target="_blank" rel="noreferrer noopener">
-                  <PiGithubLogoLight size="30px" />
+                  <PiGithubLogoFill size="30px" color="#666" />
                   깃허브
                 </Link>
               </li>
               <li>
                 <Link to="https://www.freepik.com/free-vector/flat-design-cruelty-free-badge-collection_11906105.htm#fromView=search&page=11&position=5&uuid=5cb17115-3db8-4301-83c9-6884f042141b" target="_blank" rel="noreferrer noopener">
-                  <PiPlantLight size="30px" />
+                  <PiPlantFill size="30px" color="#666" />
                   로고 아이콘
                 </Link>
               </li>
               <li>
                 <Link to="https://www.flaticon.com/free-icon/qr-scan_4187294?related_id=4187264&origin=search" target="_blank" rel="noreferrer noopener">
-                  <PiImageLight size="30px" />홈 아이콘1
+                  <PiImageFill size="30px" color="#666" />홈 아이콘1
                 </Link>
               </li>
               <li>
                 <Link to="https://www.flaticon.com/free-icon/stamp_5442020?term=stamp&page=1&position=12&origin=search&related_id=5442020" target="_blank" rel="noreferrer noopener">
-                  <PiImageLight size="30px" />홈 아이콘2
+                  <PiImageFill size="30px" color="#666" />홈 아이콘2
                 </Link>
               </li>
               <li>
                 <Link to="https://www.freepik.com/free-vector/weather-icons-collection_972339.htm" target="_blank" rel="noreferrer noopener">
-                  <PiCloudSunLight size="30px" />
+                  <PiCloudSunFill size="30px" color="#666" />
                   날씨 아이콘
                 </Link>
               </li>
               <li>
                 <Link to="https://phosphoricons.com/" target="_blank" rel="noreferrer noopener">
-                  <PiInfoLight size="30px" />
+                  <PiInfoFill size="30px" color="#666" />
                   기타 아이콘
                 </Link>
               </li>
