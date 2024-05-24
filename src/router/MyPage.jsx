@@ -9,7 +9,7 @@ import { useMutation } from "react-query";
 import { apiPasswordEdit } from "../api.js";
 import { useTranslation } from "react-i18next";
 import i18n from "../context/i18n.js";
-import { PiCloudSunLight, PiGithubLogoLight, PiImageLight } from "react-icons/pi";
+import { PiCloudSunLight, PiGithubLogoLight, PiImageLight, PiInfoLight, PiPlantLight } from "react-icons/pi";
 
 function SettingBtn({ txt1, txt2, onClick, ThemeMode, left, onOff }) {
   return (
@@ -142,6 +142,12 @@ export default function MyPage() {
                 </Link>
               </li>
               <li>
+                <Link to="https://www.freepik.com/free-vector/flat-design-cruelty-free-badge-collection_11906105.htm#fromView=search&page=11&position=5&uuid=5cb17115-3db8-4301-83c9-6884f042141b" target="_blank" rel="noreferrer noopener">
+                  <PiPlantLight size="30px" />
+                  로고 아이콘
+                </Link>
+              </li>
+              <li>
                 <Link to="https://www.flaticon.com/free-icon/qr-scan_4187294?related_id=4187264&origin=search" target="_blank" rel="noreferrer noopener">
                   <PiImageLight size="30px" />홈 아이콘1
                 </Link>
@@ -155,6 +161,12 @@ export default function MyPage() {
                 <Link to="https://www.freepik.com/free-vector/weather-icons-collection_972339.htm" target="_blank" rel="noreferrer noopener">
                   <PiCloudSunLight size="30px" />
                   날씨 아이콘
+                </Link>
+              </li>
+              <li>
+                <Link to="https://phosphoricons.com/" target="_blank" rel="noreferrer noopener">
+                  <PiInfoLight size="30px" />
+                  기타 아이콘
                 </Link>
               </li>
             </ul>
