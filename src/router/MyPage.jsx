@@ -91,7 +91,7 @@ export default function MyPage() {
           {/* 사용자 정보를 이용하여 마이페이지 렌더링 */}
           {user ? (
             <>
-              <h2>{user?.user_id + t(`myPage.mp0`)}</h2>
+              <h2>{t(`myPage.mp0`)}</h2>
               <div id="myPW">{t(`myPage.mp1`)}</div>
               <form id="accountInfo" onSubmit={handleSubmit(onValid)} className="flex items-end">
                 <input {...register("passwordEdit")} type="password" placeholder="******" className={`${ThemeMode === "dark" ? "bg-[#111]" : "bg-inherit"}`} />

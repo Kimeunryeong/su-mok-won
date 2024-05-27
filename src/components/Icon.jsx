@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { FaHome, FaMap, FaStamp, FaUser } from "react-icons/fa";
+import { FaGear } from "react-icons/fa6";
 import { ColorBlindContext, useTheme } from "../context/themeProvider";
 
 export default function Icon({ text, icon, size, green }) {
@@ -17,7 +18,7 @@ export default function Icon({ text, icon, size, green }) {
       IconImg = FaStamp;
       break;
     case "user":
-      IconImg = FaUser;
+      IconImg = FaGear;
       break;
     default:
       break;

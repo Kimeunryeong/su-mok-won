@@ -10,7 +10,7 @@ i18n.use(initReactI18next).init({
           map: "Map",
           qr: "QR Scan",
           stamp: "Stamp",
-          mypage: "My page",
+          mypage: "Settings",
         },
         main: {
           guide0: "After registering as a member, you can turn on the camera by pressing the QR shooting button at the bottom.",
@@ -107,7 +107,7 @@ i18n.use(initReactI18next).init({
           sp6: "The compensation can be received at the management office.",
         },
         myPage: {
-          mp0: "'s My page",
+          mp0: "App Settings",
           mp1: "Password",
           mp2: "Modify",
           mp3: "Dark Mode",
@@ -148,7 +148,7 @@ i18n.use(initReactI18next).init({
           map: "지도",
           qr: "QR 촬영",
           stamp: "스탬프",
-          mypage: "마이페이지",
+          mypage: "설정",
         },
         main: {
           guide0: "회원 가입 후, 아래쪽의 QR 촬영 버튼을 누르면 카메라가 켜집니다.",
@@ -245,7 +245,7 @@ i18n.use(initReactI18next).init({
           sp6: "보상은 수목원 관리사무실에서 수령할 수 있습니다.",
         },
         myPage: {
-          mp0: "님의 마이페이지",
+          mp0: "앱 설정",
           mp1: "비밀번호",
           mp2: "수정",
           mp3: "다크 모드",
