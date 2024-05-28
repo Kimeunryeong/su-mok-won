@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { FaHome, FaMap, FaStamp, FaUser } from "react-icons/fa";
+import { FaHome, FaMap, FaStamp } from "react-icons/fa";
 import { FaGear } from "react-icons/fa6";
 import { ColorBlindContext, useTheme } from "../context/themeProvider";
 
