@@ -75,8 +75,8 @@ export default function KakaoMap({ userLocation, markers }) {
 
     // 사용자의 위치가 있을 경우 마커로 표시
     if (userLocation) {
-      // const userPosition = new kakao.maps.LatLng(userLocation.latitude, userLocation.longitude);
-      const userPosition = new kakao.maps.LatLng(35.799, 128.5221);
+      const userPosition = new kakao.maps.LatLng(userLocation.latitude, userLocation.longitude);
+      // const userPosition = new kakao.maps.LatLng(35.799, 128.5221);
 
       // 사용자 위치를 나타낼 마커 생성
 
