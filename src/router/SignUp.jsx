@@ -7,6 +7,7 @@ import { apiPostUserRegiser } from "../api";
 import { IdInput, Pw2Input, PwInput } from "../components/FromInput";
 import Socials from "../components/Socials";
 import { useTranslation } from "react-i18next";
+import Swal from "sweetalert2";
 
 export default function SignUp() {
   const { t } = useTranslation();
@@ -25,6 +26,13 @@ export default function SignUp() {
   const { mutate } = useMutation(apiPostUserRegiser, {
     onSuccess: (data) => {
       if (data.result === true) {
+        Swal.fire({
+          text: "회원가입에 성공하였습니다.",
+          padding: "20px 0",
+          width: "350px",
+          confirmButtonText: "확인",
+          buttonsStyling: false,
+        });
         navigate("/login");
       }
     },

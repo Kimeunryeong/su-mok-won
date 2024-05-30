@@ -4,7 +4,7 @@
 https://daegusumokwon.netlify.app
 
 ### 🔗apk 다운로드링크
-https://drive.google.com/file/d/1bFTTd6O6F-2Qoy4izmdPnfhyESWfmj1z/view?usp=sharing
+https://drive.google.com/file/d/185FOBZ5VKdl4CXfc1RebuwHsm_Ia9Rn3/view?usp=sharing
 
 
 ### 🔎소개

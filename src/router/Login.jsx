@@ -7,6 +7,7 @@ import { apiPostUserLogin } from "../api";
 import { IdInput, PwInput } from "../components/FromInput";
 import Socials from "../components/Socials";
 import { useTranslation } from "react-i18next";
+import Swal from "sweetalert2";
 
 export default function Login() {
   const { t } = useTranslation();
@@ -26,6 +27,13 @@ export default function Login() {
     onSuccess: (data) => {
       if (data.result === true) {
         sessionStorage.setItem("userData", JSON.stringify(data));
+        Swal.fire({
+          text: "로그인에 성공하였습니다.",
+          padding: "20px 0",
+          width: "350px",
+          confirmButtonText: "확인",
+          buttonsStyling: false,
+        });
         navigate("/home");
       }
     },
