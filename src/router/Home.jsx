@@ -107,7 +107,7 @@ export default function Home() {
           {userData && (
             <div className="w-full h-full pt-4">
               <div className="text-2xl mb-[2px]">
-                {userData.user_id} {t(`main.hello2`)}
+                {userData.user_id.includes("@") ? userData.user_id.split("@")[0] : userData.user_id} {t(`main.hello2`)}
               </div>
               <span className="text-lg text-[#888]">
                 {t(`main.hello3`)} {stampArray?.filter((s) => s.is_collected === 1).length} {t(`main.hello4`)}
