@@ -106,7 +106,7 @@ export default function Home() {
           )}
           {userData && (
             <div className="w-full h-full pt-4">
-              <div className="text-2xl mb-[2px]">
+              <div className="text-2xl mb-[2px]" style={{ textShadow: "-1px 0px 2px white, 0px 1px 2px white, 1px 0px 2px white, 0px -1px 3px white" }}>
                 {userData.user_id.includes("@") ? userData.user_id.split("@")[0] : userData.user_id} {t(`main.hello2`)}
               </div>
               <span className="text-lg text-[#888]">
